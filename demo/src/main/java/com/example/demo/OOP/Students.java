@@ -32,7 +32,7 @@ public class Students {
     private String misId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "EmployeeID")
+    @JoinColumn(name = "EmployeeID", nullable = true)
     private Employees employee;  // Assuming you have an Employee entity
 
     @ManyToOne(fetch = FetchType.LAZY)

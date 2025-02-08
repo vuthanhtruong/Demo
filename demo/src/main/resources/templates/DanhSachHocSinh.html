@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Danh Sách Học Sinh</title>
+  <link rel="stylesheet" href="/DanhSachHocSinh.css">
+</head>
+<body>
+<div class="container mt-5">
+  <h2 class="mb-4">Danh Sách Học Sinh</h2>
+  <table class="table table-bordered">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Họ</th>
+      <th>Tên</th>
+      <th>Email</th>
+      <th>Số điện thoại</th>
+      <th>MIS ID</th>
+      <th>Nhân viên phụ trách</th>
+      <th>Hành động</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="student : ${students}">
+      <td th:text="${student.studentID}"></td>
+      <td th:text="${student.lastName}"></td>
+      <td th:text="${student.firstName}"></td>
+      <td th:text="${student.email}"></td>
+      <td th:text="${student.phoneNumber}"></td>
+      <td th:text="${student.misId}"></td>
+      <td th:text="${student.employee != null ? student.employee.firstName + ' ' + student.employee.lastName : 'Không có'}"></td>
+      <td>
+        <a th:href="@{/SuaHocSinh/{id}(id=${student.studentID})}" class="btn btn-warning">Sửa</a>
+        <a th:href="@{/XoaHocSinh/{id}(id=${student.studentID})}" class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa học sinh này?');">Xóa</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <a href="/ThemHocSinh" class="btn btn-primary">Thêm Học Sinh</a>
+  <div class="text-center mt-3">
+    <a href="/TrangChuAdmin" class="btn btn-secondary">Quay Lại Trang Chủ Admin</a>
+  </div>
+</div>
+</body>
+</html>

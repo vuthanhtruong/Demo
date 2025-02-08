@@ -1,0 +1,94 @@
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Body */
+body {
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 20px;
+}
+
+/* Container */
+.container {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    max-width: 90%;
+    width: 900px;
+}
+
+h1 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th {
+    background: #2980b9;
+    color: white;
+    padding: 12px;
+    text-transform: uppercase;
+}
+
+td {
+    padding: 10px;
+    color: #333;
+}
+
+/* Row hover effect */
+tbody tr:hover {
+    background: #f4f4f4;
+}
+
+/* Action links */
+a {
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a[href^="/SuaGiaoVien"] {
+    color: #f39c12;
+}
+
+a[href^="/XoaGiaoVien"] {
+    color: #e74c3c;
+}
+
+a[href^="/ThemGiaoVien"], a[href^="/TrangChuAdmin"] {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 15px;
+    background: #27ae60;
+    color: white;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+a[href^="/ThemGiaoVien"]:hover, a[href^="/TrangChuAdmin"]:hover {
+    background: #1e8449;
+}
+
+a:hover {
+    text-decoration: underline;
+}

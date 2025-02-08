@@ -5,6 +5,9 @@ import jakarta.validation.constraints.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.Set;
+
 @Entity
 @Table(name = "Admin")
 @Getter
@@ -27,6 +30,11 @@ public class Admin {
     @Column(name = "Email", nullable = false, unique = true, length = 255)
     @Email(message = "Email không hợp lệ")
     private String Email;
+
+    @OneToMany(mappedBy = "admin", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Teachers> teachers;
+
+
 
     @Column(name = "PhoneNumber", nullable = false, unique = true, length = 20)
     @Pattern(regexp = "^\\+?[0-9]{10,15}$", message = "Số điện thoại không hợp lệ")

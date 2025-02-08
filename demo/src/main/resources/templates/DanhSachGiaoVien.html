@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh Sách Giáo Viên</title>
+    <link rel="stylesheet" href="/DanhSachGiaoVien.css"> <!-- Thay bằng đường dẫn file CSS của bạn -->
+</head>
+<body>
+
+<div class="container">
+    <h1>📚 Danh Sách Giáo Viên</h1>
+
+    <table border="1">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Họ</th>
+            <th>Tên</th>
+            <th>Email</th>
+            <th>Số Điện Thoại</th>
+            <th>MIS ID</th>
+            <th>Hành Động</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Lặp qua danh sách giáo viên -->
+        <tr th:each="teacher : ${teachers}">
+            <td th:text="${teacher.teacherID}"></td>
+            <td th:text="${teacher.lastName}"></td>
+            <td th:text="${teacher.firstName}"></td>
+            <td th:text="${teacher.email}"></td>
+            <td th:text="${teacher.phoneNumber}"></td>
+            <td th:text="${teacher.misID}"></td>
+            <td>
+                <a th:href="@{'/SuaGiaoVien/' + ${teacher.teacherID}}">✏️ Sửa</a> |
+                <a th:href="@{'/XoaGiaoVien/' + ${teacher.teacherID}}" onclick="return confirm('Bạn có chắc chắn muốn xóa?')">🗑️ Xóa</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <br>
+    <a href="/ThemGiaoVien">➕ Thêm Giáo Viên</a>
+    <br><br>
+    <a href="/TrangChuAdmin">🏠 Quay lại Trang Chủ của Admin</a>
+</div>
+
+</body>
+</html>

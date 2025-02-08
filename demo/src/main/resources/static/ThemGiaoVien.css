@@ -1,0 +1,116 @@
+/* Reset mặc định */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Body - Background Gradient ấn tượng */
+body {
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 20px;
+}
+
+/* Container chính */
+.container {
+    background: white;
+    padding: 35px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    width: 450px;
+    text-align: center;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Tiêu đề */
+h2 {
+    color: #2C3E50;
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+/* Input & Select */
+.form-control, .form-select {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease-in-out;
+    background-color: #f9f9f9;
+}
+
+/* Hover & Focus Effect */
+.form-control:focus, .form-select:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 10px rgba(52, 152, 219, 0.4);
+    outline: none;
+}
+
+/* Button chính */
+.btn-primary {
+    background: #3498db;
+    color: white;
+    padding: 12px;
+    border: none;
+    width: 100%;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-primary:hover {
+    background: #2980b9;
+    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+}
+
+/* Button Quay Lại */
+.btn-secondary {
+    background: #95a5a6;
+    color: white;
+    padding: 12px;
+    border: none;
+    width: 100%;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: inline-block;
+    text-decoration: none;
+    margin-top: 10px;
+}
+
+.btn-secondary:hover {
+    background: #7f8c8d;
+    box-shadow: 0 5px 15px rgba(149, 165, 166, 0.4);
+}
+
+/* Hiệu ứng Animation khi load trang */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 500px) {
+    .container {
+        width: 90%;
+        padding: 25px;
+    }
+}

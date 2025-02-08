@@ -35,7 +35,7 @@ public class Teachers {
     private String misID;
 
     @ManyToOne
-    @JoinColumn(name = "EmployeeID")
+    @JoinColumn(name = "EmployeeID", nullable = true)
     private Employees employee; // Liên kết với bảng Employee (có thể là NULL)
 
     @ManyToOne

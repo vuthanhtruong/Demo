@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Danh Sách Nhân Viên</title>
+  <link rel="stylesheet" href="/DanhSachNhanVien.css">
+</head>
+<body>
+<div class="container mt-5">
+  <h2 class="mb-4">Danh Sách Nhân Viên</h2>
+  <table class="table table-bordered">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Họ</th>
+      <th>Tên</th>
+      <th>Email</th>
+      <th>Số điện thoại</th>
+      <th>Hành động</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="employee : ${employees}">
+      <td th:text="${employee.EmployeeID}"></td>
+      <td th:text="${employee.LastName}"></td>
+      <td th:text="${employee.FirstName}"></td>
+      <td th:text="${employee.Email}"></td>
+      <td th:text="${employee.PhoneNumber}"></td>
+      <td>
+        <a th:href="@{/SuaNhanVien/{id}(id=${employee.EmployeeID})}" class="btn btn-warning">Sửa</a>
+        <a th:href="@{/XoaNhanVien/{id}(id=${employee.EmployeeID})}" class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa nhân viên này?');">Xóa</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <a href="/ThemNhanVien" class="btn btn-primary">Thêm Nhân Viên</a>
+  <div class="text-center mt-3">
+    <a href="/TrangChuAdmin" class="btn btn-secondary">Quay Lại Trang Chủ Admin</a>
+  </div>
+</div>
+</body>
+</html>
