@@ -1,0 +1,67 @@
+
+body {
+    background: linear-gradient(to right, #74ebd5, #acb6e5);
+    font-family: 'Arial', sans-serif;
+}
+
+.card {
+    border-radius: 15px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: white;
+}
+
+.form-control {
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.form-select {
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.btn-success {
+    background-color: #28a745;
+    border: none;
+    transition: background 0.3s;
+    font-size: 18px;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+}
+
+.btn-outline-secondary {
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+.text-center {
+    font-weight: bold;
+    color: #333;
+}
+
+/* Thông báo lỗi/thành công */
+.alert {
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+

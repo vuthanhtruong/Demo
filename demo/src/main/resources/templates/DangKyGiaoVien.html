@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Đăng Ký Giáo Viên</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEJ6PQLBkpYdYd0dCwQkQn6eMUGfrA7+jr54v0RY6JkI3BKNyyv7U1NJ2kgGp" crossorigin="anonymous">
+
+  <!-- Link to the external CSS file -->
+  <link rel="stylesheet" href="DangKyGiaoVien.css">
+</head>
+<body>
+
+<div class="container">
+  <h1>Đăng Ký Giáo Viên</h1>
+
+  <!-- Form for teacher registration -->
+  <form th:action="@{/DangKyGiaoVien}" method="POST">
+    <div class="form-group">
+      <label for="employeeID">Chọn Nhân Viên:</label>
+      <select id="employeeID" name="EmployeeID" class="form-select" required>
+        <option value="" disabled selected>Chọn Nhân Viên</option>
+        <th:block th:each="employee : ${employees}">
+          <option th:value="${employee.EmployeeID}" th:text="${employee.FirstName} + ' ' + ${employee.LastName}"></option>
+        </th:block>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="teacherID">ID giáo viên:</label>
+      <input type="text" id="TeacherID" name="TeacherID" class="form-control" required>
+    </div>
+
+    <div class="form-group">
+      <label for="firstName">Họ :</label>
+      <input type="text" id="FirstName" name="FirstName" class="form-control" required>
+    </div>
+
+    <div class="form-group">
+      <label for="lastName">Tên:</label>
+      <input type="text" id="LastName" name="LastName" class="form-control" required>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" id="Email" name="Email" class="form-control" required>
+    </div>
+
+    <div class="form-group">
+      <label for="phoneNumber">Số Điện Thoại:</label>
+      <input type="text" id="PhoneNumber" name="PhoneNumber" class="form-control" required>
+    </div>
+
+    <div class="form-group">
+      <label for="misID">Mã Giảng Viên (MIS ID):</label>
+      <input type="text" id="MisID" name="MisID" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label for="password">Mật Khẩu:</label>
+      <input type="password" id="Password" name="Password" class="form-control" required>
+    </div>
+
+    <div class="form-group">
+      <label for="confirmPassword">Xác Nhận Mật Khẩu:</label>
+      <input type="password" id="ConfirmPassword" name="ConfirmPassword" class="form-control" required>
+    </div>
+
+    <div>
+      <button type="submit" class="btn btn-primary">Đăng Ký</button>
+    </div>
+  </form>
+</div>
+
+<!-- Bootstrap JS & Popper -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9gybN8Tt2uNWz5Lk6R9HkMeWqLhIepjXjIu7xgD5F5uNIGzB0T+Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-pzjw8f+ua7Kw1TIq0v8Fqg6dI9gNUZ0yBB0XtJ3F7YqA9rry7sb5oswBCsw2P0p/9" crossorigin="anonymous"></script>
+
+</body>
+</html>

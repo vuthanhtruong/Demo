@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Trang Chủ Admin</title>
+  <link rel="stylesheet" type="text/css" href="/TrangChuAdmin.css">
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h2>Trang Chủ Admin</h2>
+    <div th:if="${admin != null}">
+      <span>Xin chào, <b th:text="${admin.firstName + ' ' + admin.lastName}"></b></span> |
+      <span>Email: <b th:text="${admin.email}"></b></span> |
+      <span>SĐT: <b th:text="${admin.phoneNumber}"></b></span>
+      <a href="/DangXuatAdmin">Đăng xuất</a>
+    </div>
+  </div>
+
+  <div class="dashboard">
+    <div class="card">
+      <h3>Sinh Viên</h3>
+      <p>Quản lý danh sách sinh viên</p>
+      <a href="/DanhSachSinhVien">Xem chi tiết</a>
+    </div>
+    <div class="card">
+      <h3>Giáo Viên</h3>
+      <p>Quản lý danh sách giáo viên</p>
+      <a href="/DanhSachGiaoVien">Xem chi tiết</a>
+    </div>
+    <div class="card">
+      <h3>Nhân Viên</h3>
+      <p>Quản lý danh sách nhân viên</p>
+      <a href="/DanhSachNhanVien">Xem chi tiết</a>
+    </div>
+  </div>
+</div>
+</body>
+</html>
