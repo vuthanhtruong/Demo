@@ -2,21 +2,36 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>Danh Sách Nhân Viên</title>
+  <title>📋 Danh Sách Nhân Viên</title>
   <link rel="stylesheet" href="/DanhSachNhanVien.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 <div class="container mt-5">
-  <h2 class="mb-4">Danh Sách Nhân Viên</h2>
+  <h2 class="mb-4"><i class="fas fa-users"></i> Danh Sách Nhân Viên</h2>
+  <div class="text-center mt-3">
+    <a href="/TrangChuAdmin" class="btn btn-secondary"><i class="fas fa-home"></i> Quay Lại Trang Chủ Admin</a>
+  </div>
+  <form th:action="@{/TimKiemNhanVien}" method="post" class="mb-4">
+    <label for="searchType">🔍 Tìm kiếm theo:</label>
+    <select name="searchType" id="searchType">
+      <option value="id">🆔 ID</option>
+      <option value="name">📛 Tên</option>
+    </select>
+    <input type="text" name="keyword" placeholder="Nhập từ khóa..." required>
+    <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i> Tìm kiếm</button>
+  </form>
+  <a href="/ThemNhanVien" class="btn btn-primary"><i class="fas fa-user-plus"></i> Thêm Nhân Viên</a>
+
   <table class="table table-bordered">
     <thead>
     <tr>
-      <th>ID</th>
-      <th>Họ</th>
-      <th>Tên</th>
-      <th>Email</th>
-      <th>Số điện thoại</th>
-      <th>Hành động</th>
+      <th>🆔 ID</th>
+      <th>👤 Họ</th>
+      <th>📛 Tên</th>
+      <th>📧 Email</th>
+      <th>📞 Số điện thoại</th>
+      <th>⚙️ Hành động</th>
     </tr>
     </thead>
     <tbody>
@@ -27,16 +42,13 @@
       <td th:text="${employee.Email}"></td>
       <td th:text="${employee.PhoneNumber}"></td>
       <td>
-        <a th:href="@{/SuaNhanVien/{id}(id=${employee.EmployeeID})}" class="btn btn-warning">Sửa</a>
-        <a th:href="@{/XoaNhanVien/{id}(id=${employee.EmployeeID})}" class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa nhân viên này?');">Xóa</a>
+        <a th:href="@{/SuaNhanVien/{id}(id=${employee.EmployeeID})}" class="btn btn-warning"><i class="fas fa-edit"></i> Sửa</a>
+        <a th:href="@{/XoaNhanVien/{id}(id=${employee.EmployeeID})}" class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa nhân viên này?');"><i class="fas fa-trash-alt"></i> Xóa</a>
       </td>
     </tr>
     </tbody>
   </table>
-  <a href="/ThemNhanVien" class="btn btn-primary">Thêm Nhân Viên</a>
-  <div class="text-center mt-3">
-    <a href="/TrangChuAdmin" class="btn btn-secondary">Quay Lại Trang Chủ Admin</a>
-  </div>
+
 </div>
 </body>
 </html>

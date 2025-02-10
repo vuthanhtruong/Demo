@@ -8,9 +8,18 @@
 <body>
 <div class="container mt-5">
     <h2 class="mb-4">Thêm Nhân Viên</h2>
+
+    <!-- Hiển thị thông báo lỗi nếu có -->
+    <div th:if="${param.error}" class="alert alert-danger">
+        <p th:if="${param.error[0] == 'employeeIDExists'}">❌ Mã nhân viên đã tồn tại!</p>
+        <p th:if="${param.error[0] == 'emailExists'}">❌ Email này đã được sử dụng!</p>
+        <p th:if="${param.error[0] == 'phoneExists'}">❌ Số điện thoại này đã được sử dụng!</p>
+        <p th:if="${param.error[0] == 'notLoggedIn'}">❌ Bạn chưa đăng nhập!</p>
+    </div>
+
     <form action="/ThemNhanVien" method="post">
         <div class="form-group">
-            <label for="firstName">ID Nhân viên:</label>
+            <label for="idemployee">ID Nhân viên:</label>
             <input type="text" id="idemployee" name="EmployeeID" class="form-control" required>
         </div>
         <div class="form-group">
@@ -35,6 +44,7 @@
         </div>
         <button type="submit" class="btn btn-success">Thêm Nhân Viên</button>
     </form>
+
     <div class="text-center mt-3">
         <a href="/DanhSachNhanVien" class="btn btn-secondary">Quay Lại Danh Sách Nhân Viên</a>
     </div>

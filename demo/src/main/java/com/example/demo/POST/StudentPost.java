@@ -4,9 +4,12 @@ import com.example.demo.OOP.Admin;
 import com.example.demo.OOP.Employees;
 import com.example.demo.OOP.Students;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceContext;
+import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -55,5 +58,26 @@ public class StudentPost {
 
         return "redirect:/DangNhapHocSinh";
     }
+    @PostMapping("/DangNhapHocSinh")
+    public String DangNhapHocSinh(@RequestParam("studentID") long studentID,
+                                  @RequestParam("password") String password,
+                                  ModelMap model,
+                                  HttpSession session) {
+        try {
+            Students student = entityManager.find(Students.class, studentID);
+
+            if (student != null && student.getPassword().equals(password)) {
+                session.setAttribute("StudentID", student.getStudentID());
+                return "redirect:/TrangChuHocSinh";
+            } else {
+                model.addAttribute("error", "Mã học sinh hoặc mật khẩu không đúng!");
+                return "redirect:/DangNhapHocSinh";
+            }
+        } catch (NoResultException e) {
+            model.addAttribute("error", "Mã học sinh không tồn tại!");
+            return "redirect:/DangNhapHocSinh";
+        }
+    }
+
 
 }

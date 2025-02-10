@@ -4,34 +4,35 @@
   <meta charset="UTF-8">
   <title>Trang Chủ Admin</title>
   <link rel="stylesheet" type="text/css" href="/TrangChuAdmin.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
 <div class="container">
   <div class="header">
-    <h2>Trang Chủ Admin</h2>
+    <h2><i class="fas fa-user-shield"></i> Trang Chủ Admin</h2>
     <div th:if="${admin != null}">
-      <span>Xin chào, <b th:text="${admin.firstName + ' ' + admin.lastName}"></b></span> |
-      <span>Email: <b th:text="${admin.email}"></b></span> |
-      <span>SĐT: <b th:text="${admin.phoneNumber}"></b></span>
-      <a href="/DangXuatAdmin">Đăng xuất</a>
+      <span><i class="fas fa-user"></i> Xin chào, <b th:text="${admin.firstName + ' ' + admin.lastName}"></b></span> |
+      <span><i class="fas fa-envelope"></i> Email: <b th:text="${admin.email}"></b></span> |
+      <span><i class="fas fa-phone"></i> SĐT: <b th:text="${admin.phoneNumber}"></b></span>
+      <a href="/DangXuatAdmin"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
     </div>
   </div>
 
   <div class="dashboard">
     <div class="card">
-      <h3>Sinh Viên</h3>
+      <h3><i class="fas fa-user-graduate"></i> Sinh Viên</h3>
       <p>Quản lý danh sách sinh viên</p>
-      <a href="/DanhSachHocSinh">Xem chi tiết</a>
+      <a href="/DanhSachHocSinh"><i class="fas fa-list"></i> Xem chi tiết</a>
     </div>
     <div class="card">
-      <h3>Giáo Viên</h3>
+      <h3><i class="fas fa-chalkboard-teacher"></i> Giáo Viên</h3>
       <p>Quản lý danh sách giáo viên</p>
-      <a href="/DanhSachGiaoVien">Xem chi tiết</a>
+      <a href="/DanhSachGiaoVien"><i class="fas fa-list"></i> Xem chi tiết</a>
     </div>
     <div class="card">
-      <h3>Nhân Viên</h3>
+      <h3><i class="fas fa-user-tie"></i> Nhân Viên</h3>
       <p>Quản lý danh sách nhân viên</p>
-      <a href="/DanhSachNhanVien">Xem chi tiết</a>
+      <a href="/DanhSachNhanVien"><i class="fas fa-list"></i> Xem chi tiết</a>
     </div>
   </div>
 </div>

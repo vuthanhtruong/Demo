@@ -1,166 +1,171 @@
-/* Import Fonts & Icons */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css');
-
 /* Reset CSS */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Inter', 'Poppins', sans-serif;
 }
 
-/* Background Gradient */
 body {
-    background: linear-gradient(135deg, #1e3c72, #2a5298);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    background: radial-gradient(circle, #141E30, #243B55, #000000);
+    color: white;
     min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
     padding: 20px;
+    overflow-y: auto;
 }
 
 /* Container */
 .container {
-    background: rgba(255, 255, 255, 0.2);
+    max-width: 1200px;
+    width: 100%;
+    text-align: center;
+    padding: 25px;
+    background: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(15px);
     border-radius: 15px;
-    padding: 30px;
-    width: 90%;
-    max-width: 900px;
-    text-align: center;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    animation: fadeIn 1s ease-in-out;
+    box-shadow: 0 10px 50px rgba(255, 255, 255, 0.3);
+    animation: neonGlow 1.5s infinite alternate;
 }
 
-/* Animation FadeIn */
-@keyframes fadeIn {
+@keyframes neonGlow {
     from {
-        opacity: 0;
-        transform: translateY(-30px);
+        box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
     }
     to {
-        opacity: 1;
-        transform: translateY(0);
+        box-shadow: 0 0 40px rgba(0, 255, 255, 1);
     }
 }
 
-/* Title */
-h2 {
-    color: #fff;
-    font-size: 28px;
-    font-weight: 700;
+.container h2 {
+    font-size: 36px;
     margin-bottom: 20px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    color: #f8f9fa;
+    text-shadow: 0px 0px 20px rgba(255, 255, 255, 1);
 }
 
-/* Table Styling */
+/* Form tìm kiếm */
+form {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+input, select, button {
+    padding: 12px;
+    border-radius: 12px;
+    border: none;
+    font-size: 18px;
+    text-align: center;
+}
+
+input {
+    flex: 1;
+    border: 3px solid #00e1ff;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+select {
+    background: #ff0099;
+    color: white;
+    cursor: pointer;
+}
+
+button {
+    background: #00ff99;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0px 0px 20px rgba(0, 255, 153, 0.8);
+}
+
+button:hover {
+    background: #00cc88;
+    transform: scale(1.1);
+}
+
+/* Table */
 table {
     width: 100%;
     border-collapse: collapse;
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 10px;
+    margin-top: 15px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+thead {
+    background: linear-gradient(to right, #ff0099, #9900ff);
+    color: white;
 }
 
 th, td {
-    padding: 12px;
+    padding: 14px;
     text-align: center;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+    font-size: 18px;
+    white-space: nowrap;
 }
 
 th {
-    background: rgba(255, 255, 255, 0.4);
-    color: #000;
-    font-weight: 700;
-}
-
-td {
-    color: #fff;
-}
-
-/* Table Row Hover */
-tbody tr:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transition: all 0.3s ease-in-out;
-}
-
-/* Buttons */
-.btn {
-    display: inline-block;
-    padding: 10px 15px;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: 600;
-    text-decoration: none;
-    transition: all 0.3s ease-in-out;
+    font-size: 20px;
     text-transform: uppercase;
-    letter-spacing: 1px;
 }
 
-/* Button Primary */
-.btn-primary {
-    background: linear-gradient(135deg, #00c6ff, #0072ff);
+tr:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+td a {
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 12px;
+    transition: 0.3s;
+}
+
+td a:first-child {
+    background: #ffcc00;
+    color: black;
+    box-shadow: 0px 0px 15px rgba(255, 204, 0, 0.8);
+}
+
+td a:first-child:hover {
+    background: #e0a800;
+    transform: scale(1.1);
+}
+
+td a:last-child {
+    background: #ff0033;
     color: white;
+    box-shadow: 0px 0px 15px rgba(255, 0, 51, 0.8);
 }
 
-.btn-primary:hover {
-    background: linear-gradient(135deg, #0072ff, #00c6ff);
-    box-shadow: 0 5px 15px rgba(0, 198, 255, 0.4);
-    transform: scale(1.05);
+td a:last-child:hover {
+    background: #cc0022;
+    transform: scale(1.1);
 }
 
-/* Button Warning */
-.btn-warning {
-    background: linear-gradient(135deg, #ffcc00, #ff8800);
+/* Links */
+a {
+    display: inline-block;
+    padding: 12px 18px;
+    background: linear-gradient(to right, #00c6ff, #0072ff);
     color: white;
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: bold;
+    margin-top: 10px;
+    transition: 0.3s;
+    box-shadow: 0px 0px 20px rgba(0, 198, 255, 0.8);
 }
 
-.btn-warning:hover {
-    background: linear-gradient(135deg, #ff8800, #ffcc00);
-    transform: scale(1.05);
-    box-shadow: 0 5px 15px rgba(255, 136, 0, 0.4);
-}
-
-/* Button Danger */
-.btn-danger {
-    background: linear-gradient(135deg, #ff416c, #ff4b2b);
-    color: white;
-}
-
-.btn-danger:hover {
-    background: linear-gradient(135deg, #ff4b2b, #ff416c);
-    transform: scale(1.05);
-    box-shadow: 0 5px 15px rgba(255, 65, 108, 0.4);
-}
-
-/* Button Secondary */
-.btn-secondary {
-    background: linear-gradient(135deg, #434343, #000000);
-    color: white;
-}
-
-.btn-secondary:hover {
-    background: linear-gradient(135deg, #000000, #434343);
-    transform: scale(1.05);
-    box-shadow: 0 5px 15px rgba(67, 67, 67, 0.4);
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .container {
-        width: 100%;
-        max-width: 600px;
-    }
-
-    th, td {
-        padding: 10px;
-        font-size: 14px;
-    }
-
-    .btn {
-        padding: 8px 12px;
-        font-size: 14px;
-    }
+a:hover {
+    background: linear-gradient(to right, #0072ff, #00c6ff);
+    transform: scale(1.1);
 }

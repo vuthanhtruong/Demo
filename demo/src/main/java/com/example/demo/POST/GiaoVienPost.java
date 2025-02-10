@@ -3,9 +3,12 @@ import com.example.demo.OOP.Admin;
 import com.example.demo.OOP.Employees;
 import com.example.demo.OOP.Teachers;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceContext;
+import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -56,5 +59,29 @@ public class GiaoVienPost {
 
         return "redirect:/DangNhapGiaoVien";
     }
+    @PostMapping("/DangNhapGiaoVien")
+    public String DangNhapGiaoVien(@RequestParam("TeacherID") Long teacherID,
+                                   @RequestParam("Password") String password,
+                                   ModelMap model,
+                                   HttpSession session) {
+        try {
+            Teachers teacher = entityManager.createQuery(
+                            "SELECT t FROM Teachers t WHERE t.teacherID = :teacherID", Teachers.class)
+                    .setParameter("teacherID", teacherID)
+                    .getSingleResult();
+
+            if (teacher != null && teacher.getPassword().equals(password)) {
+                session.setAttribute("TeacherID", teacher.getTeacherID()); // ✅ Lưu ID vào session
+                return "redirect:/TrangChuGiaoVien"; // ✅ Đăng nhập thành công
+            } else {
+                model.addAttribute("error", "Mã giáo viên hoặc mật khẩu không đúng!");
+                return "DangNhapGiaoVien"; // ❌ Không dùng redirect để giữ thông báo lỗi
+            }
+        } catch (NoResultException e) {
+            model.addAttribute("error", "Mã giáo viên không tồn tại!");
+            return "DangNhapGiaoVien";
+        }
+    }
+
 }
 

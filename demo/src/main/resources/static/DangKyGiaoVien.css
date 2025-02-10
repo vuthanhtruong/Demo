@@ -1,86 +1,150 @@
-/* styles.css */
+/* Import Fonts & Icons */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css');
 
-/* General body styling */
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Background Gradient */
 body {
-    background-color: #f8f9fa;
-    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #3498db, #8e44ad);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
 }
 
-/* Container to center the form */
+/* Container */
 .container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding-top: 50px;
-}
-
-/* Header styling */
-h1 {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-    text-align: center;
-    color: #4e73df;
-}
-
-/* Form styling */
-form {
-    background-color: white;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
     padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Form group spacing */
-.form-group {
-    margin-bottom: 20px;
-}
-
-/* Label styling */
-label {
-    font-weight: bold;
-    color: #333;
-}
-
-/* Input and select styling */
-.form-control {
-    border-radius: 8px;
-    border: 1px solid #ddd;
-}
-
-select.form-select {
-    border-radius: 8px;
-}
-
-/* Button styling */
-button {
     width: 100%;
-    padding: 10px;
-    font-size: 1.1rem;
-    background-color: #4e73df;
+    max-width: 600px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Animation FadeIn */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Title */
+h1 {
+    color: #fff;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+/* Form Elements */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+/* Labels */
+label {
+    color: #fff;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+/* Input Fields */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    font-size: 16px;
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    outline: none;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Focus Effect */
+input:focus, select:focus {
+    border: 2px solid #00ff99;
+    box-shadow: 0 0 8px rgba(0, 255, 153, 0.6);
+    transform: scale(1.02);
+}
+
+/* Placeholder Styling */
+input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Buttons */
+button[type="submit"], .btn-outline-secondary {
+    display: inline-block;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Primary Button */
+button[type="submit"] {
+    background: linear-gradient(135deg, #ff9966, #ff5e62);
     color: white;
     border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s;
 }
 
-button:hover {
-    background-color: #2e59d9;
+button[type="submit"]:hover {
+    background: linear-gradient(135deg, #ff5e62, #ff9966);
+    box-shadow: 0 5px 15px rgba(255, 94, 98, 0.4);
+    transform: scale(1.05);
 }
 
-/* Validation styling */
-.invalid-feedback {
-    display: none;
+/* Secondary Button */
+.btn-outline-secondary {
+    background: transparent;
+    border: 2px solid #fff;
+    color: white;
 }
 
-.was-validated .form-control:invalid {
-    border-color: red;
+.btn-outline-secondary:hover {
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
+    transform: scale(1.05);
 }
 
-.was-validated .form-control:invalid:focus {
-    box-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
-}
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        width: 100%;
+        padding: 15px;
+    }
 
-.was-validated .form-control:invalid ~ .invalid-feedback {
-    display: block;
-    color: red;
+    h1 {
+        font-size: 24px;
+    }
 }

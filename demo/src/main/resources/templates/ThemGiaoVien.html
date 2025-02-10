@@ -9,6 +9,14 @@
 <div class="container mt-5">
     <h2 class="mb-4">Thêm Giáo Viên</h2>
     <form th:action="@{/ThemGiaoVien}" method="post">
+        <div th:if="${param.error}" class="alert alert-danger">
+            <p th:if="${param.error[0] == 'teacherIDExists'}">❌ Mã giáo viên đã tồn tại!</p>
+            <p th:if="${param.error[0] == 'emailExists'}">❌ Email này đã được sử dụng!</p>
+            <p th:if="${param.error[0] == 'phoneExists'}">❌ Số điện thoại này đã được sử dụng!</p>
+            <p th:if="${param.error[0] == 'misIDExists'}">❌ MIS ID đã tồn tại!</p>
+            <p th:if="${param.error[0] == 'employeeNotFound'}">❌ Nhân viên không tồn tại!</p>
+            <p th:if="${param.error[0] == 'notLoggedIn'}">❌ Bạn chưa đăng nhập!</p>
+        </div>
         <div class="mb-3">
             <label for="firstName" class="form-label">ID Giáo Viên</label>
             <input type="text" class="form-control" id="idTeacher" name="TeacherID" required>

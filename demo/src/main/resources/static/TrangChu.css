@@ -3,89 +3,77 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Inter', 'Poppins', sans-serif;
+    text-align: center;
 }
 
-/* Background Gradient */
 body {
-    background: linear-gradient(to right, #141e30, #243b55);
+    background: linear-gradient(to right, #141E30, #243B55);
     color: white;
-    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100vh;
 }
 
-/* Container */
+/* Container chính */
 .container {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
     padding: 40px;
     border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    max-width: 500px;
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.4);
+    width: 400px;
+    animation: neonGlow 1.5s infinite alternate;
 }
 
-/* Title */
+@keyframes neonGlow {
+    from {
+        box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+    }
+    to {
+        box-shadow: 0 0 40px rgba(0, 255, 255, 1);
+    }
+}
+
+/* Tiêu đề */
 h1 {
-    font-size: 32px;
-    font-weight: 700;
+    font-size: 28px;
     margin-bottom: 20px;
+    text-shadow: 0px 0px 15px rgba(255, 255, 255, 1);
 }
 
-/* Buttons */
-.d-grid {
-    display: grid;
-    gap: 15px;
-}
-
-.d-grid a {
+/* Nút bấm */
+a {
     display: block;
-    padding: 15px;
-    font-size: 18px;
-    font-weight: bold;
-    border-radius: 8px;
     text-decoration: none;
-    transition: all 0.3s ease-in-out;
-    border: none;
-    text-align: center;
+    padding: 12px;
+    margin: 10px;
+    font-size: 18px;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: 0.3s;
+    box-shadow: 0px 0px 15px rgba(0, 198, 255, 0.8);
 }
 
-/* Button Colors */
+/* Màu sắc từng nút */
 .btn-primary {
-    background: #007bff;
+    background: linear-gradient(to right, #00c6ff, #0072ff);
     color: white;
 }
 
 .btn-success {
-    background: #28a745;
+    background: linear-gradient(to right, #00ff87, #007f5f);
     color: white;
 }
 
 .btn-warning {
-    background: #ff9f00;
+    background: linear-gradient(to right, #ffcc00, #ff6600);
     color: white;
 }
 
-/* Hover effects */
-.d-grid a:hover {
-    opacity: 0.9;
+/* Hiệu ứng hover */
+a:hover {
     transform: scale(1.05);
-}
-
-/* Button Animations */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.d-grid a {
-    animation: fadeIn 0.8s ease-in-out;
+    filter: brightness(1.2);
 }

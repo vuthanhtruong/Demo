@@ -1,12 +1,16 @@
 package com.example.demo.GET;
 
 import com.example.demo.OOP.Employees;
+import com.example.demo.OOP.Students;
+import com.example.demo.OOP.Teachers;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -27,4 +31,16 @@ public class GiaoVienGet {
         model.addAttribute("employees", employees);
         return "DangKyGiaoVien";
     }
+    @GetMapping("/TrangChuGiaoVien")
+    public String DangNhapGiaoVien(ModelMap model, HttpSession session) {
+        Teachers teacher = entityManager.find(Teachers.class, session.getAttribute("TeacherID"));
+        model.addAttribute("teacher", teacher);
+        return "TrangChuGiaoVien";
+    }
+    @GetMapping("/DangXuatGiaoVien")
+    public String DangXuatGiaoVien(HttpSession session) {
+        session.invalidate();
+        return "redirect:/DangNhapGiaoVien";
+    }
+
 }

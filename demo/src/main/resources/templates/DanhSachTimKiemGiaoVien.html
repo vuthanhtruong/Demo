@@ -1,10 +1,57 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <title>$Title$</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kết Quả Tìm Kiếm Giáo Viên</title>
+  <link rel="stylesheet" href="/DanhSachGiaoVien.css"> <!-- Thay bằng đường dẫn file CSS -->
 </head>
 <body>
-$END$
+
+<div class="container">
+  <h1>🔍 Kết Quả Tìm Kiếm Giáo Viên</h1>
+
+  <table border="1">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Họ</th>
+      <th>Tên</th>
+      <th>Email</th>
+      <th>Số Điện Thoại</th>
+      <th>MIS ID</th>
+      <th>Hành Động</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Kiểm tra nếu có kết quả tìm kiếm -->
+    <tr th:if="${teachers != null and not #lists.isEmpty(teachers)}"
+        th:each="teacher : ${teachers}">
+      <td th:text="${teacher.teacherID}"></td>
+      <td th:text="${teacher.lastName}"></td>
+      <td th:text="${teacher.firstName}"></td>
+      <td th:text="${teacher.email}"></td>
+      <td th:text="${teacher.phoneNumber}"></td>
+      <td th:text="${teacher.misID}"></td>
+      <td>
+        <a th:href="@{'/SuaGiaoVien/' + ${teacher.teacherID}}">✏️ Sửa</a> |
+        <a th:href="@{'/XoaGiaoVien/' + ${teacher.teacherID}}"
+           onclick="return confirm('Bạn có chắc chắn muốn xóa?')">🗑️ Xóa</a>
+      </td>
+    </tr>
+
+    <!-- Hiển thị thông báo nếu không có kết quả -->
+    <tr th:if="${teachers == null or #lists.isEmpty(teachers)}">
+      <td colspan="7" class="text-center">❌ Không tìm thấy kết quả nào!</td>
+    </tr>
+    </tbody>
+  </table>
+
+  <br>
+  <a href="/DanhSachGiaoVien">📜 Quay lại Danh Sách Giáo Viên</a>
+  <br><br>
+  <a href="/TrangChuAdmin">🏠 Quay lại Trang Chủ của Admin</a>
+</div>
+
 </body>
 </html>

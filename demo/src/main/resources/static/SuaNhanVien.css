@@ -1,154 +1,120 @@
-/* Import Google Font */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
-
-/* Reset mặc định */
+/* Reset CSS */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Inter', 'Poppins', sans-serif;
 }
 
-/* Background Gradient */
 body {
-    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    background: linear-gradient(to right, #fcb69f, #ff617d);
+    color: white;
+    min-height: 100vh;
     display: flex;
-    justify-content: center;
     align-items: center;
-    height: 100vh;
-    padding: 20px;
+    justify-content: center;
+    font-size: 16px;
 }
 
-/* Form Container */
+/* Container */
 .container {
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
-    border-radius: 15px;
-    padding: 30px;
-    width: 90%;
-    max-width: 450px;
-    text-align: center;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+    padding: 40px;
+    width: 100%;
+    max-width: 600px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    animation: fadeIn 0.8s ease-in-out;
 }
 
-/* Animation FadeIn */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Title */
+/* Header */
 h2 {
-    color: #fff;
-    font-size: 26px;
-    font-weight: 700;
+    color: white;
+    font-size: 2.5em;
     margin-bottom: 20px;
+    text-align: center;
 }
 
 /* Form */
 form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
-/* Form Group */
-.form-group {
-    width: 100%;
-    margin-bottom: 15px;
-    text-align: left;
-}
-
-/* Labels */
 label {
-    font-weight: 600;
-    color: #fff;
+    font-size: 18px;
+    color: white;
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
 }
 
-/* Input Fields */
-input {
+input[type="text"], input[type="email"], input[type="password"] {
     width: 100%;
     padding: 10px;
     border-radius: 8px;
-    border: none;
-    background: rgba(255, 255, 255, 0.3);
-    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
     font-size: 16px;
-    transition: all 0.3s ease-in-out;
+    margin-bottom: 15px;
 }
 
-/* Placeholder */
-input::placeholder {
-    color: rgba(255, 255, 255, 0.7);
-}
-
-/* Input Focus */
-input:focus {
-    background: rgba(255, 255, 255, 0.5);
+input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus {
     outline: none;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    border: 1px solid #fcb69f;
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
-/* Buttons */
-button {
-    background: linear-gradient(135deg, #ff512f, #dd2476);
+button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(to right, #fcb69f, #ff617d);
     color: white;
-    padding: 12px 20px;
+    font-size: 18px;
+    font-weight: bold;
     border: none;
     border-radius: 8px;
-    font-size: 16px;
-    font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s ease-in-out;
-    width: 100%;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-button:hover {
-    background: linear-gradient(135deg, #dd2476, #ff512f);
+button[type="submit"]:hover {
+    background: linear-gradient(to right, #ff617d, #fcb69f);
     transform: scale(1.05);
-    box-shadow: 0 5px 15px rgba(221, 36, 118, 0.4);
 }
 
-/* Back Link */
-.text-center a {
+/* Link back */
+a {
     display: inline-block;
+    text-align: center;
     margin-top: 15px;
-    padding: 10px 15px;
+    padding: 10px 20px;
+    background-color: #888;
     color: white;
-    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
     border-radius: 8px;
-    background: rgba(255, 255, 255, 0.2);
-    transition: all 0.3s ease-in-out;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.text-center a:hover {
-    background: rgba(255, 255, 255, 0.4);
+a:hover {
+    background-color: #666;
     transform: scale(1.05);
 }
 
-/* Responsive */
+/* Responsiveness */
 @media (max-width: 768px) {
-    .container {
-        width: 100%;
-        max-width: 400px;
+    form {
+        padding: 20px;
     }
 
-    input {
-        font-size: 14px;
-        padding: 8px;
+    h2 {
+        font-size: 2em;
     }
 
-    button {
-        padding: 10px 16px;
-        font-size: 14px;
+    button[type="submit"] {
+        font-size: 16px;
     }
 }

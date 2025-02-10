@@ -1,0 +1,98 @@
+/* ----- Cài đặt chung ----- */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    color: #fff;
+    text-align: center;
+}
+
+/* Tiêu đề chính */
+h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    background: linear-gradient(90deg, #ff9a9e, #fad0c4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 3px 3px 10px rgba(255, 154, 158, 0.6);
+    margin-bottom: 30px;
+}
+
+/* Wrapper: Chia bố cục 3 phần tách biệt */
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+/* Thiết kế từng phần */
+.user-section {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 20px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 30px rgba(0, 255, 255, 0.2);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+/* Hiệu ứng hover - Phát sáng huyền thoại */
+.user-section:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 40px rgba(255, 0, 255, 0.4);
+}
+
+/* Tiêu đề mỗi phần */
+h2 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-shadow: 2px 2px 8px rgba(255, 255, 255, 0.3);
+}
+
+/* Bảng hiển thị dữ liệu */
+.table {
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.table thead {
+    background: linear-gradient(45deg, #ff512f, #dd2476);
+}
+
+.table thead th {
+    color: white;
+    font-size: 1rem;
+    padding: 12px;
+}
+
+.table tbody tr {
+    transition: background 0.3s ease-in-out;
+}
+
+.table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Nút bấm huyền thoại */
+.btn {
+    background: linear-gradient(45deg, #ff416c, #ff4b2b);
+    border: none;
+    font-size: 1.1rem;
+    font-weight: bold;
+    padding: 12px 25px;
+    border-radius: 8px;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.btn:hover {
+    transform: scale(1.08);
+    box-shadow: 0 5px 20px rgba(255, 105, 180, 0.5);
+}
+
+/* Responsive: Xuống hàng khi màn hình nhỏ */
+@media (max-width: 992px) {
+    .wrapper {
+        flex-direction: column;
+    }
+}

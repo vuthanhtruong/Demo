@@ -4,21 +4,45 @@
   <meta charset="UTF-8">
   <title>Danh Sách Học Sinh</title>
   <link rel="stylesheet" href="/DanhSachHocSinh.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
 <div class="container mt-5">
-  <h2 class="mb-4">Danh Sách Học Sinh</h2>
+  <h2 class="mb-4"><i class="fas fa-user-graduate"></i> Danh Sách Học Sinh</h2>
+  <div class="text-center mt-3">
+    <a href="/TrangChuAdmin" class="btn btn-secondary">
+      <i class="fas fa-arrow-left"></i> Quay Lại Trang Chủ Admin
+    </a>
+  </div>
+
+  <!-- Form tìm kiếm -->
+  <form action="/TimKiemHocSinh" method="post" class="mb-4">
+    <div class="input-group">
+      <input type="text" name="keyword" class="form-control" placeholder="Nhập ID hoặc Tên học sinh" required>
+      <select name="searchType" class="form-select">
+        <option value="id">Tìm theo ID</option>
+        <option value="name">Tìm theo Tên</option>
+      </select>
+      <button type="submit" class="btn btn-primary">
+        <i class="fas fa-search"></i> Tìm kiếm
+      </button>
+    </div>
+  </form>
+  <a href="/ThemHocSinh" class="btn btn-success">
+    <i class="fas fa-user-plus"></i> Thêm Học Sinh
+  </a>
+
   <table class="table table-bordered">
     <thead>
     <tr>
-      <th>ID</th>
-      <th>Họ</th>
-      <th>Tên</th>
-      <th>Email</th>
-      <th>Số điện thoại</th>
-      <th>MIS ID</th>
-      <th>Nhân viên phụ trách</th>
-      <th>Hành động</th>
+      <th><i class="fas fa-id-badge"></i> ID</th>
+      <th><i class="fas fa-user"></i> Họ</th>
+      <th><i class="fas fa-user"></i> Tên</th>
+      <th><i class="fas fa-envelope"></i> Email</th>
+      <th><i class="fas fa-phone"></i> Số điện thoại</th>
+      <th><i class="fas fa-id-card"></i> MIS ID</th>
+      <th><i class="fas fa-user-tie"></i> Nhân viên phụ trách</th>
+      <th><i class="fas fa-cogs"></i> Hành động</th>
     </tr>
     </thead>
     <tbody>
@@ -31,16 +55,17 @@
       <td th:text="${student.misId}"></td>
       <td th:text="${student.employee != null ? student.employee.firstName + ' ' + student.employee.lastName : 'Không có'}"></td>
       <td>
-        <a th:href="@{/SuaHocSinh/{id}(id=${student.studentID})}" class="btn btn-warning">Sửa</a>
-        <a th:href="@{/XoaHocSinh/{id}(id=${student.studentID})}" class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa học sinh này?');">Xóa</a>
+        <a th:href="@{/SuaHocSinh/{id}(id=${student.studentID})}" class="btn btn-warning">
+          <i class="fas fa-edit"></i> Sửa
+        </a>
+        <a th:href="@{/XoaHocSinh/{id}(id=${student.studentID})}" class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa học sinh này?');">
+          <i class="fas fa-trash"></i> Xóa
+        </a>
       </td>
     </tr>
     </tbody>
   </table>
-  <a href="/ThemHocSinh" class="btn btn-primary">Thêm Học Sinh</a>
-  <div class="text-center mt-3">
-    <a href="/TrangChuAdmin" class="btn btn-secondary">Quay Lại Trang Chủ Admin</a>
-  </div>
+
 </div>
 </body>
 </html>

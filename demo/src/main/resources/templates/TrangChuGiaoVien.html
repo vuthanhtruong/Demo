@@ -1,10 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>$Title$</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trang Chủ Giáo Viên</title>
+  <link rel="stylesheet" href="/TrangChuGiaoVien.css"> <!-- File CSS -->
 </head>
 <body>
-$END$
+
+<div class="container">
+  <h1>👨‍🏫 Chào mừng, <span th:text="${teacher.firstName} + ' ' + ${teacher.lastName}"></span>!</h1>
+
+  <div class="info-box">
+    <p><strong>ID:</strong> <span th:text="${teacher.teacherID}"></span></p>
+    <p><strong>Email:</strong> <span th:text="${teacher.email}"></span></p>
+    <p><strong>Số điện thoại:</strong> <span th:text="${teacher.phoneNumber}"></span></p>
+    <p><strong>MIS ID:</strong> <span th:text="${teacher.misID}"></span></p>
+  </div>
+
+  <div class="actions">
+    <a href="/DanhSachLopHoc" class="btn btn-primary">📚 Quản Lý Lớp Học</a>
+    <a href="/DanhSachHocSinh" class="btn btn-info">👨‍🎓 Danh Sách Học Sinh</a>
+    <a href="/DangXuatGiaoVien" class="btn btn-danger">🚪 Đăng Xuất</a>
+  </div>
+</div>
+
 </body>
 </html>

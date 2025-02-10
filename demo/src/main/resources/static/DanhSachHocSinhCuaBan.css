@@ -1,0 +1,169 @@
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Background với hiệu ứng gradient động */
+body {
+    background: linear-gradient(45deg, #2b1055, #7597de, #2b1055);
+    background-size: 300% 300%;
+    animation: gradientBG 8s ease infinite;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Hiệu ứng gradient động */
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Container chính với hiệu ứng Glassmorphism */
+.container {
+    max-width: 900px;
+    width: 100%;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border-radius: 15px;
+    box-shadow: 0 0 40px rgba(0, 255, 255, 0.5);
+    text-align: center;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Tiêu đề */
+h1 {
+    font-size: 36px;
+    color: #fff;
+    text-shadow: 0px 0px 15px rgba(0, 255, 255, 1);
+}
+
+/* Input tìm kiếm */
+.input-group {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 0px 20px rgba(0, 255, 255, 0.7);
+}
+
+.form-control {
+    background: transparent;
+    border: none;
+    color: white;
+}
+
+.form-control::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* Hiệu ứng hover cho ô nhập */
+.form-control:focus {
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: inset 0 0 15px rgba(0, 255, 255, 0.8);
+    outline: none;
+}
+
+/* Bảng danh sách */
+.table {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 0px 20px rgba(0, 255, 255, 0.5);
+}
+
+/* Header của bảng */
+.table-dark {
+    background: linear-gradient(45deg, #0a3d62, #1e90ff);
+    color: white;
+}
+
+/* Các dòng trong bảng */
+.table tbody tr {
+    transition: all 0.3s ease-in-out;
+}
+
+/* Hover vào từng dòng */
+.table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.02);
+}
+
+/* Nút bấm Neon */
+.btn {
+    padding: 12px 18px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 10px;
+    transition: all 0.3s;
+    text-transform: uppercase;
+}
+
+/* Nút Thêm Học Sinh */
+.btn-success {
+    background: linear-gradient(to right, #32ff7e, #18dcff);
+    color: white;
+    border: none;
+    box-shadow: 0px 0px 20px rgba(50, 255, 126, 0.8);
+}
+
+.btn-success:hover {
+    background: linear-gradient(to right, #18dcff, #32ff7e);
+    transform: scale(1.1);
+    box-shadow: 0px 0px 30px rgba(50, 255, 126, 1);
+}
+
+/* Nút Sửa */
+.btn-warning {
+    background: linear-gradient(to right, #feca57, #ff9f43);
+    color: white;
+    border: none;
+    box-shadow: 0px 0px 20px rgba(254, 202, 87, 0.8);
+}
+
+.btn-warning:hover {
+    background: linear-gradient(to right, #ff9f43, #feca57);
+    transform: scale(1.1);
+    box-shadow: 0px 0px 30px rgba(254, 202, 87, 1);
+}
+
+/* Nút Xóa */
+.btn-danger {
+    background: linear-gradient(to right, #ff4b5c, #ff2e63);
+    color: white;
+    border: none;
+    box-shadow: 0px 0px 20px rgba(255, 75, 92, 0.8);
+}
+
+.btn-danger:hover {
+    background: linear-gradient(to right, #ff2e63, #ff4b5c);
+    transform: scale(1.1);
+    box-shadow: 0px 0px 30px rgba(255, 75, 92, 1);
+}
+
+/* Nút Trang Chủ */
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.3);
+    color: white;
+    border: none;
+    box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.5);
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.5);
+    transform: scale(1.1);
+    box-shadow: 0px 0px 25px rgba(255, 255, 255, 0.8);
+}
+
+/* Hiển thị thông báo lỗi */
+.alert {
+    font-size: 18px;
+    font-weight: bold;
+    text-shadow: 0px 0px 10px rgba(255, 0, 0, 0.7);
+}

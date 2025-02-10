@@ -12,7 +12,6 @@ import lombok.Setter;
 public class Teachers {
 
     @Id
-
     @Column(name = "TeacherID")
     private Long teacherID;
 

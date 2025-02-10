@@ -72,15 +72,15 @@ public class AdminGet {
         return "ThemNhanVien";
     }
     @GetMapping("/XoaGiaoVien/{id}")
-    public String XoaGiaoVien(@PathVariable("id") int id) {
+    public String XoaGiaoVien(@PathVariable("id") long id) {
         Teachers teacher = entityManager.find(Teachers.class, id);
         if (teacher != null) {
             entityManager.remove(teacher);
         }
-        return "redirect:/DanhSachGiaoVien"; // Chuyển hướng thay vì trả về template trực tiếp
+        return "redirect:/DanhSachGiaoVien";
     }
     @GetMapping("/XoaHocSinh/{id}")
-    public String XoaHocSinh(@PathVariable("id") int id) {
+    public String XoaHocSinh(@PathVariable("id") long id) {
         Students student = entityManager.find(Students.class, id);
         entityManager.remove(student);
         return "redirect:/DanhSachHocSinh";
@@ -94,7 +94,9 @@ public class AdminGet {
             entityManager.createQuery("UPDATE Students s SET s.employee = NULL WHERE s.employee.EmployeeID = :id")
                     .setParameter("id", id)
                     .executeUpdate();
-
+            entityManager.createQuery("UPDATE Teachers s SET s.employee = NULL WHERE s.employee.EmployeeID = :id")
+                    .setParameter("id", id)
+                    .executeUpdate();
             // Sau đó xóa nhân viên
             entityManager.remove(employee);
         }

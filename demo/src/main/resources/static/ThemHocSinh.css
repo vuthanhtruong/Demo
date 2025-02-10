@@ -1,152 +1,178 @@
-/* Import Fonts & Icons */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css');
-
 /* Reset CSS */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Inter', 'Poppins', sans-serif;
 }
 
-/* Background Gradient */
 body {
-    background: linear-gradient(135deg, #1f4037, #99f2c8);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    background: linear-gradient(to right, #34c7ff, #4e8df1);
+    color: white;
     min-height: 100vh;
-    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
 }
 
 /* Container */
 .container {
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(15px);
-    border-radius: 15px;
-    padding: 30px;
-    width: 90%;
-    max-width: 500px;
-    text-align: center;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+    padding: 40px;
+    width: 100%;
+    max-width: 600px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    animation: fadeIn 1s ease-in-out;
 }
 
-/* Animation FadeIn */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Title */
+/* Header */
 h2 {
-    color: #fff;
-    font-size: 26px;
-    font-weight: 700;
+    color: white;
+    font-size: 2.5em;
     margin-bottom: 20px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    text-align: center;
 }
 
-/* Input Group */
+/* Error Messages */
+.alert {
+    padding: 15px;
+    background-color: #f44336;
+    color: white;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.alert p {
+    margin: 0;
+    font-size: 1em;
+}
+
+/* Form */
+form {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
 .input-group {
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     position: relative;
 }
 
 .input-group label {
-    color: #fff;
-    font-weight: 600;
+    font-size: 18px;
+    color: white;
+    display: block;
     margin-bottom: 5px;
 }
 
-.input-group label i {
-    margin-right: 8px;
-}
-
-/* Input Fields */
-.input-group input,
-.input-group select {
+.input-group input, .input-group select {
     width: 100%;
-    padding: 12px;
+    padding: 10px;
     border-radius: 8px;
-    border: none;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
     font-size: 16px;
-    background: rgba(255, 255, 255, 0.3);
-    color: white;
+}
+
+.input-group input:focus, .input-group select:focus {
     outline: none;
-    transition: all 0.3s ease-in-out;
+    border: 1px solid #00c6ff;
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
-/* Placeholder Styling */
-.input-group input::placeholder {
-    color: rgba(255, 255, 255, 0.7);
+.input-group i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #00c6ff;
 }
 
-.input-group input:focus,
-.input-group select:focus {
-    border: 2px solid #00ff99;
-    box-shadow: 0 0 10px rgba(0, 255, 153, 0.6);
-    transform: scale(1.02);
-}
-
-/* Buttons */
-.btn {
-    display: block;
+/* Submit Button */
+button[type="submit"] {
     width: 100%;
     padding: 12px;
+    background: linear-gradient(to right, #00c6ff, #00aaff);
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
     border: none;
     border-radius: 8px;
-    font-size: 18px;
-    font-weight: 700;
     cursor: pointer;
-    transition: all 0.3s ease-in-out;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background: linear-gradient(to right, #00aaff, #00c6ff);
+    transform: scale(1.05);
+}
+
+/* Secondary Button (Back) */
+.btn-container a {
+    display: inline-block;
+    text-align: center;
     margin-top: 15px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.btn i {
-    margin-right: 8px;
-}
-
-/* Primary Button */
-.btn-primary {
-    background: linear-gradient(135deg, #ff9966, #ff5e62);
+    padding: 10px 20px;
+    background-color: #888;
     color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.btn-primary:hover {
-    background: linear-gradient(135deg, #ff5e62, #ff9966);
-    box-shadow: 0 5px 15px rgba(255, 94, 98, 0.4);
+.btn-container a:hover {
+    background-color: #666;
     transform: scale(1.05);
 }
 
-/* Secondary Button */
-.btn-secondary {
-    background: linear-gradient(135deg, #2c3e50, #4ca1af);
-    color: white;
+/* Icons inside inputs */
+.input-group i {
+    font-size: 20px;
+    color: #00c6ff;
 }
 
-.btn-secondary:hover {
-    background: linear-gradient(135deg, #4ca1af, #2c3e50);
-    transform: scale(1.05);
-    box-shadow: 0 5px 15px rgba(76, 161, 175, 0.4);
+/* Focused input styles */
+input:focus, select:focus {
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 1px solid #00c6ff;
+    box-shadow: 0 0 10px rgba(0, 198, 255, 0.5);
 }
 
-/* Responsive */
+/* Placeholder text color */
+input::placeholder, select::placeholder {
+    color: #aaa;
+}
+
+/* Form fields inside .input-group */
+.input-group input {
+    padding-left: 35px;
+}
+
+.input-group select {
+    padding-left: 35px;
+}
+
+/* Overall form alignment */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Responsiveness */
 @media (max-width: 768px) {
     .container {
-        width: 100%;
-        max-width: 400px;
+        width: 90%;
+        padding: 30px;
+    }
+
+    h2 {
+        font-size: 2em;
     }
 }
