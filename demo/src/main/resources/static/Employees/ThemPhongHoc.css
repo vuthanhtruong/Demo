@@ -1,0 +1,116 @@
+/* ======== NỀN TRANG VÀ CĂN CHỈNH ======== */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+
+/* ======== TIÊU ĐỀ ======== */
+h2 {
+    font-weight: bold;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+    margin-bottom: 20px;
+}
+
+/* ======== FORM ======== */
+form {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    max-width: 400px;
+    width: 100%;
+}
+
+/* ======== NHÃN ======== */
+label {
+    font-weight: bold;
+    display: block;
+    margin: 10px 0 5px;
+}
+
+/* ======== Ô NHẬP ======== */
+input, select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease-in-out;
+}
+
+input:focus, select:focus {
+    outline: none;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+/* ======== NÚT BẤM ======== */
+button, a {
+    font-size: 16px;
+    padding: 10px 15px;
+    margin: 5px;
+    border-radius: 8px;
+    border: none;
+    display: inline-block;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Nút Thêm Phòng */
+button {
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background: linear-gradient(135deg, #ff7eb3, #ff758c);
+    transform: scale(1.05);
+}
+
+/* Nút Quay Lại */
+a {
+    background: linear-gradient(135deg, #00c6ff, #0072ff);
+    color: white;
+    padding: 10px 20px;
+    font-weight: bold;
+}
+
+a:hover {
+    background: linear-gradient(135deg, #0072ff, #00c6ff);
+    transform: scale(1.05);
+}
+
+/* ======== THÔNG BÁO LỖI ======== */
+p {
+    font-size: 14px;
+    font-weight: bold;
+    color: #ffeb3b;
+    margin-top: 10px;
+}
+
+/* ======== HIỆU ỨNG ANIMATION ======== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+form {
+    animation: fadeIn 0.8s ease-in-out;
+}

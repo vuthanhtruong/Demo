@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Danh Sách Phòng Học</title>
+  <link rel="stylesheet" th:href="@{/DanhSachPhongHoc.css}">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body class="container mt-4">
+
+<h2 class="text-center mb-4">Danh Sách Phòng Học</h2>
+
+<!-- Thanh công cụ -->
+<div class="d-flex justify-content-between mb-3">
+  <!-- Nút Thêm Phòng Học -->
+  <a th:href="@{/ThemPhongHoc}" class="btn btn-primary">
+    Thêm Phòng Học
+  </a>
+
+  <!-- Nút Thêm Loại Phòng Học -->
+  <a th:href="@{/ThemLoaiPhongHoc}" class="btn btn-success">
+    Thêm Loại Phòng Học
+  </a>
+
+  <!-- Ô tìm kiếm -->
+  <div class="d-flex">
+    <select id="searchType" class="form-select me-2">
+      <option value="name">Tìm theo Tên</option>
+      <option value="id">Tìm theo ID</option>
+    </select>
+
+    <input type="text" id="searchInput" class="form-control me-2"
+           placeholder="Nhập từ khóa..." onkeyup="filterRooms()">
+
+    <button class="btn btn-info" onclick="resetSearch()">Reset</button>
+  </div>
+
+  <!-- Nút Quay Lại -->
+  <a th:href="@{/TrangChuNhanVien}" class="btn btn-secondary">
+    Quay Lại Trang Chủ
+  </a>
+</div>
+
+<!-- Bảng danh sách phòng học -->
+<table class="table table-striped">
+  <thead class="table-dark">
+  <tr>
+    <th>ID</th>
+    <th>Tên Phòng</th>
+    <th>Loại Phòng</th>
+    <th>Nhân Viên Tạo</th>
+    <th>Thao Tác</th>
+  </tr>
+  </thead>
+  <tbody id="roomTable">
+  <tr th:each="room : ${rooms}" th:attr="data-id=${room.roomId}, data-name=${room.roomName}">
+    <td th:text="${room.roomId}"></td>
+    <td th:text="${room.roomName}"></td>
+    <td th:text="${room.roomTypeID != null ? room.roomTypeID.roomTypeName : 'Chưa có loại'}"></td>
+    <td th:text="${room.employeeID.firstName + ' ' + room.employeeID.lastName}"></td>
+    <td>
+      <a th:href="@{/SuaPhongHoc/{id}(id=${room.roomId})}" class="btn btn-warning btn-sm">Sửa</a>
+      <a th:href="@{/XoaPhongHoc/{id}(id=${room.roomId})}" class="btn btn-danger btn-sm"
+         onclick="return confirm('Bạn có chắc chắn muốn xóa?');">Xóa</a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<!-- JavaScript -->
+<script>
+  function filterRooms() {
+    let searchType = document.getElementById("searchType").value; // "id" hoặc "name"
+    let searchValue = document.getElementById("searchInput").value.toLowerCase();
+    let rows = document.querySelectorAll("#roomTable tr");
+
+    rows.forEach(row => {
+      let roomId = row.getAttribute("data-id").toLowerCase();
+      let roomName = row.getAttribute("data-name").toLowerCase();
+
+      // Kiểm tra theo loại tìm kiếm
+      let match = searchType === "id" ? roomId.includes(searchValue) : roomName.includes(searchValue);
+
+      // Hiển thị hoặc ẩn dòng
+      row.style.display = match ? "" : "none";
+    });
+  }
+
+  function resetSearch() {
+    document.getElementById("searchInput").value = "";
+    filterRooms();
+  }
+</script>
+
+<!-- CSS -->
+<style>
+  #searchType, #searchInput {
+    max-width: 200px;
+  }
+</style>
+
+</body>
+</html>

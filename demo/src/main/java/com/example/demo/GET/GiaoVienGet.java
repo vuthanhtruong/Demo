@@ -1,7 +1,6 @@
 package com.example.demo.GET;
 
 import com.example.demo.OOP.Employees;
-import com.example.demo.OOP.Students;
 import com.example.demo.OOP.Teachers;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -10,7 +9,6 @@ import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;

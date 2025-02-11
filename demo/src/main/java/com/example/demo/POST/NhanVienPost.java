@@ -1,17 +1,14 @@
 package com.example.demo.POST;
 
-import com.example.demo.OOP.Admin;
-import com.example.demo.OOP.Employees;
-import com.example.demo.OOP.Students;
-import com.example.demo.OOP.Teachers;
+import com.example.demo.OOP.*;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceContext;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -233,7 +230,99 @@ public class NhanVienPost {
 
         return "redirect:/DanhSachHocSinhCuaBan?success=updated";
     }
+    @PostMapping("/ThemLoaiPhongHoc")
+    @Transactional
+    public String ThemLoaiPhongHoc(@RequestParam("roomTypeId") Long roomTypeId,
+                                   @RequestParam("roomTypeId") String roomTypeName,HttpSession session) {
+        // Tìm Employee theo ID
+        Employees employee = entityManager.find(Employees.class, session.getAttribute("EmployeeID"));
+        if (employee == null) {
+            return "redirect:/ThemLoaiPhongHoc?error=EmployeeNotFound";
+        }
+        RoomTypes roomType = new RoomTypes();
+        roomType.setRoomTypeId(roomTypeId);
+        roomType.setRoomTypeName(roomTypeName);
+        roomType.setEmployeeID(employee);
 
+        entityManager.persist(roomType);
+
+        return "redirect:/ThemLoaiPhongHoc?success=updated";
+    }
+    @PostMapping("/ThemPhongHoc")
+    public String ThemPhongHoc(@RequestParam("roomId") Long roomId,
+                               @RequestParam("roomName") String roomName,
+                               @RequestParam("roomTypeId") Long roomTypeId,
+                               HttpSession session) {
+        // Lấy thông tin nhân viên từ session
+        Employees loggedInEmployee = entityManager.find(Employees.class, session.getAttribute("EmployeeID"));
+        RoomTypes roomType1 = entityManager.find(RoomTypes.class, roomTypeId);
+        if (loggedInEmployee == null) {
+            return "redirect:/DangNhapNhanVien"; // Nếu chưa đăng nhập, quay về trang login
+        }
+
+        // Tìm loại phòng theo ID
+        RoomTypes roomType = entityManager.find(RoomTypes.class, roomTypeId);
+        if (roomType == null) {
+            return "redirect:/ThemPhongHoc?error=InvalidRoomType";
+        }
+
+        Rooms newRoom = new Rooms();
+        newRoom.setRoomName(roomName);
+        newRoom.setRoomId(roomId);
+        newRoom.setEmployeeID(loggedInEmployee);
+        newRoom.setRoomTypeID(roomType1);
+        entityManager.persist(newRoom);
+
+        return "redirect:/DanhSachPhongHoc"; // Quay về danh sách phòng học
+    }
+    @PostMapping("/SuaPhongHoc")
+    public String CapNhatPhongHoc(@RequestParam("roomId") Long roomId,
+                                  @RequestParam("roomName") String roomName,
+                                  @RequestParam("roomTypeId") Long roomTypeId,
+                                  HttpSession session) {
+        // Lấy thông tin phòng từ database
+        Rooms room = entityManager.find(Rooms.class, roomId);
+        if (room == null) {
+            return "redirect:/DanhSachPhongHoc?error=RoomNotFound";
+        }
+
+        // Kiểm tra xem loại phòng có tồn tại không
+        RoomTypes roomType = entityManager.find(RoomTypes.class, roomTypeId);
+        if (roomType == null) {
+            return "redirect:/SuaPhongHoc/" + roomId + "?error=InvalidRoomType";
+        }
+
+        // Kiểm tra nhân viên đang đăng nhập
+        Employees loggedInEmployee = entityManager.find(Employees.class, session.getAttribute("EmployeeID"));
+        if (loggedInEmployee == null) {
+            return "redirect:/DangNhapNhanVien";
+        }
+
+        // Cập nhật thông tin phòng học
+        room.setRoomName(roomName);
+        room.setRoomTypeID(roomType);
+        room.setEmployeeID(loggedInEmployee);
+        entityManager.merge(room);  // Lưu thay đổi
+
+        return "redirect:/DanhSachPhongHoc?success=RoomUpdated";
+    }
+    @PostMapping("/SuaLoaiPhongHoc")
+    @Transactional
+    public String updateRoomType(@ModelAttribute RoomTypes updatedRoomType) {
+        RoomTypes existingRoomType = entityManager.find(RoomTypes.class, updatedRoomType.getRoomTypeId());
+
+        if (existingRoomType == null) {
+            return "redirect:/ThemLoaiPhongHoc?error=RoomTypeNotFound";
+        }
+
+        // Cập nhật thông tin loại phòng học
+        existingRoomType.setRoomTypeName(updatedRoomType.getRoomTypeName());
+
+        // Lưu thay đổi
+        entityManager.merge(existingRoomType);
+
+        return "redirect:/ThemLoaiPhongHoc";
+    }
 
 
 

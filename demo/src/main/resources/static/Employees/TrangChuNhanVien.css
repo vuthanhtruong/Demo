@@ -1,0 +1,124 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+/* Hiệu ứng gradient động */
+@keyframes backgroundAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Tổng thể */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fad0c4, #ffdde1, #fc6076, #ff9a9e);
+    background-size: 300% 300%;
+    animation: backgroundAnimation 10s ease infinite;
+    color: #fff;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+/* Hiệu ứng fade-in khi trang tải */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.container {
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Tiêu đề chính */
+h1 {
+    font-size: 2.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(45deg, #ff416c, #ff4b2b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+h2 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 30px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Nút bấm */
+.btn {
+    font-size: 1.3rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all 0.3s ease-in-out;
+    border-radius: 12px;
+    border: none;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    color: white;
+}
+
+/* Hiệu ứng hover */
+.btn:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0px 10px 20px rgba(255, 255, 255, 0.3);
+}
+
+/* Hiệu ứng nút có màu sắc riêng biệt */
+.btn-outline-primary {
+    background: linear-gradient(45deg, #007bff, #00c6ff);
+}
+
+.btn-outline-success {
+    background: linear-gradient(45deg, #28a745, #85d446);
+}
+
+.btn-outline-warning {
+    background: linear-gradient(45deg, #ff9a44, #ffc107);
+}
+
+.btn-outline-info {
+    background: linear-gradient(45deg, #17a2b8, #66e2ff);
+}
+
+.btn-outline-dark {
+    background: linear-gradient(45deg, #555, #333);
+}
+
+/* Nút Đăng xuất đặc biệt */
+.btn-danger {
+    background: linear-gradient(45deg, #ff416c, #ff4b2b);
+    border: none;
+    color: white;
+}
+
+.btn-danger:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 15px 40px rgba(255, 0, 0, 0.4);
+}
+
+/* Hiệu ứng icon */
+.icon {
+    font-size: 1.7rem;
+    margin-right: 10px;
+}

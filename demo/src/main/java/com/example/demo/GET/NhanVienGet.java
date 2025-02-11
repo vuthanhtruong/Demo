@@ -1,9 +1,6 @@
 package com.example.demo.GET;
 
-import com.example.demo.OOP.Admin;
-import com.example.demo.OOP.Employees;
-import com.example.demo.OOP.Students;
-import com.example.demo.OOP.Teachers;
+import com.example.demo.OOP.*;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.servlet.http.HttpSession;
@@ -13,7 +10,6 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.support.SessionStatus;
 
 import java.util.List;
 
@@ -96,6 +92,82 @@ public class NhanVienGet {
         model.addAttribute("students", students);
         return "SuaHocSinhCuaBan";
     }
+    @GetMapping("/DanhSachPhongHoc")
+    public String DanhSachPhongHoc(ModelMap model) {
+        List<Rooms> rooms = entityManager.createQuery("from Rooms").getResultList();
+        model.addAttribute("rooms", rooms);
+        return "DanhSachPhongHoc";
+    }
+    @GetMapping("/ThemLoaiPhongHoc")
+    public String ThemLoaiPhongHoc(ModelMap model) {
+        List<RoomTypes> roomTypes = entityManager.createQuery("from RoomTypes ").getResultList();
+        model.addAttribute("rooms", roomTypes);
+        return "ThemLoaiPhongHoc";
+    }
+    @GetMapping("/ThemPhongHoc")
+    public String ThemPhongHoc(ModelMap model) {
+        List<RoomTypes> roomTypes = entityManager.createQuery("from RoomTypes ").getResultList();
+        model.addAttribute("roomTypes", roomTypes);
+        return "ThemPhongHoc";
+    }
+    @GetMapping("/SuaPhongHoc/{id}")
+    public String SuaPhongHoc(ModelMap model, @PathVariable("id") long id) {
+        Rooms room = entityManager.find(Rooms.class, id);
+
+        if (room == null) {
+            return "redirect:/DanhSachPhongHoc?error=RoomNotFound";
+        }
+
+        List<RoomTypes> roomTypes = entityManager.createQuery("from RoomTypes", RoomTypes.class).getResultList();
+
+        model.addAttribute("room", room);
+        model.addAttribute("roomTypes", roomTypes);
+
+        return "SuaPhongHoc";
+    }
+
+    @GetMapping("/XoaLoaiPhongHoc/{id}")
+    @Transactional
+    public String XoaLoaiPhongHoc(@PathVariable("id") long id) {
+        // Tìm loại phòng học cần xóa
+        RoomTypes roomType = entityManager.find(RoomTypes.class, id);
+        if (roomType == null) {
+            return "redirect:/ThemLoaiPhongHoc";
+        }
+
+        // Cập nhật các phòng học có loại phòng này thành NULL
+        entityManager.createQuery("UPDATE Rooms r SET r.roomTypeID = NULL WHERE r.roomTypeID = :roomType")
+                .setParameter("roomType", roomType)
+                .executeUpdate();
+
+        // Xóa loại phòng sau khi cập nhật
+        entityManager.remove(roomType);
+
+        return "redirect:/ThemLoaiPhongHoc";
+    }
+    @GetMapping("/SuaLoaiPhongHoc/{id}")
+    public String SuaLoaiPhongHoc(ModelMap model, @PathVariable("id") long id) {
+        RoomTypes roomType = entityManager.find(RoomTypes.class, id);
+        model.addAttribute("roomType", roomType);
+        return "SuaLoaiPhongHoc";
+    }
+    @GetMapping("/XoaPhongHoc/{id}")
+    public String XoaPhongHoc(ModelMap model, @PathVariable("id") long id) {
+        Rooms room = entityManager.find(Rooms.class, id);
+
+        if (room == null) {
+            return "redirect:/DanhSachPhongHoc?error=RoomNotFound";
+        }
+
+        try {
+            entityManager.remove(room);
+            return "redirect:/DanhSachPhongHoc?success=RoomDeleted";
+        } catch (Exception e) {
+            return "redirect:/DanhSachPhongHoc?error=DeleteFailed";
+        }
+
+    }
+
 
 
 
