@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Bố Trí Lớp Học</title>
+    <link rel="stylesheet" th:href="@{/BoTriLopHoc.css}">
+</head>
+<body class="container mt-4">
+
+<h2 class="text-center mb-4">Bố Trí Lớp Học</h2>
+
+<!-- Nút Quay Lại -->
+<div class="mb-3">
+    <a th:href="@{/TrangChuNhanVien}" class="btn btn-secondary">Quay Lại Trang Chủ Nhân Viên</a>
+</div>
+
+<!-- Bảng hiển thị danh sách phòng học -->
+<table class="table table-bordered">
+    <thead class="table-dark">
+    <tr>
+        <th>ID Phòng</th>
+        <th>Tên Phòng</th>
+        <th>Chi Tiết</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="room : ${rooms}">
+        <td th:text="${room.roomId}"></td>
+        <td th:text="${room.roomName}"></td>
+        <td>
+            <a th:href="@{/ChiTietLopHoc/{id}(id=${room.roomId})}" class="btn btn-info btn-sm">
+                Xem Chi Tiết
+            </a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

@@ -7,48 +7,69 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+
 <div class="container mt-5">
-  <h2 class="mb-4"><i class="fas fa-users"></i> Danh Sách Nhân Viên</h2>
-  <div class="text-center mt-3">
-    <a href="/TrangChuAdmin" class="btn btn-secondary"><i class="fas fa-home"></i> Quay Lại Trang Chủ Admin</a>
+  <!-- Tiêu đề và các nút điều hướng -->
+  <div class="header">
+    <h2><i class="fas fa-users"></i> Danh Sách Nhân Viên</h2>
+    <div class="btn-group">
+      <a href="/TrangChuAdmin" class="btn btn-secondary">
+        <i class="fas fa-home"></i> Quay Lại Trang Chủ
+      </a>
+      <a href="/ThemNhanVien" class="btn btn-primary">
+        <i class="fas fa-user-plus"></i> Thêm Nhân Viên
+      </a>
+    </div>
   </div>
-  <form th:action="@{/TimKiemNhanVien}" method="post" class="mb-4">
-    <label for="searchType">🔍 Tìm kiếm theo:</label>
-    <select name="searchType" id="searchType">
-      <option value="id">🆔 ID</option>
-      <option value="name">📛 Tên</option>
-    </select>
-    <input type="text" name="keyword" placeholder="Nhập từ khóa..." required>
-    <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i> Tìm kiếm</button>
-  </form>
-  <a href="/ThemNhanVien" class="btn btn-primary"><i class="fas fa-user-plus"></i> Thêm Nhân Viên</a>
 
-  <table class="table table-bordered">
-    <thead>
-    <tr>
-      <th>🆔 ID</th>
-      <th>👤 Họ</th>
-      <th>📛 Tên</th>
-      <th>📧 Email</th>
-      <th>📞 Số điện thoại</th>
-      <th>⚙️ Hành động</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="employee : ${employees}">
-      <td th:text="${employee.EmployeeID}"></td>
-      <td th:text="${employee.LastName}"></td>
-      <td th:text="${employee.FirstName}"></td>
-      <td th:text="${employee.Email}"></td>
-      <td th:text="${employee.PhoneNumber}"></td>
-      <td>
-        <a th:href="@{/SuaNhanVien/{id}(id=${employee.EmployeeID})}" class="btn btn-warning"><i class="fas fa-edit"></i> Sửa</a>
-        <a th:href="@{/XoaNhanVien/{id}(id=${employee.EmployeeID})}" class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa nhân viên này?');"><i class="fas fa-trash-alt"></i> Xóa</a>
-      </td>
-    </tr>
-    </tbody>
-  </table>
+  <!-- Form tìm kiếm nhân viên -->
+  <div class="search-form">
+    <form th:action="@{/TimKiemNhanVien}" method="post" class="mb-4">
+      <label for="searchType">🔍 Tìm kiếm theo:</label>
+      <div class="search-input-group">
+        <select name="searchType" id="searchType">
+          <option value="id">🆔 ID</option>
+          <option value="name">📛 Tên</option>
+        </select>
+        <input type="text" name="keyword" placeholder="Nhập từ khóa..." required>
+        <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i> Tìm kiếm</button>
+      </div>
+    </form>
+  </div>
 
+  <!-- Bảng danh sách nhân viên -->
+  <div class="employee-table">
+    <table class="table table-bordered">
+      <thead>
+      <tr>
+        <th>🆔 ID</th>
+        <th>👤 Họ</th>
+        <th>📛 Tên</th>
+        <th>📧 Email</th>
+        <th>📞 Số điện thoại</th>
+        <th>⚙️ Hành động</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="employee : ${employees}">
+        <td th:text="${employee.EmployeeID}"></td>
+        <td th:text="${employee.LastName}"></td>
+        <td th:text="${employee.FirstName}"></td>
+        <td th:text="${employee.Email}"></td>
+        <td th:text="${employee.PhoneNumber}"></td>
+        <td class="action-buttons">
+          <a th:href="@{/SuaNhanVien/{id}(id=${employee.EmployeeID})}" class="btn btn-warning">
+            <i class="fas fa-edit"></i> Sửa
+          </a>
+          <a th:href="@{/XoaNhanVien/{id}(id=${employee.EmployeeID})}" class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa nhân viên này?');">
+            <i class="fas fa-trash-alt"></i> Xóa
+          </a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
+
 </body>
 </html>

@@ -7,11 +7,13 @@ import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/")
@@ -168,7 +170,43 @@ public class NhanVienGet {
 
     }
 
+    @GetMapping("/BoTriLopHoc")
+    public String BoTriLopHoc(ModelMap model) {
+        List<Rooms> rooms = entityManager.createQuery("from Rooms").getResultList();
+        model.addAttribute("rooms", rooms);
+        return "BoTriLopHoc";
+    }
+    @GetMapping("/ChiTietLopHoc/{id}")
+    public String ChiTietLopHoc(ModelMap model, @PathVariable("id") int id) {
+        Rooms room = entityManager.find(Rooms.class, id);
+        model.addAttribute("room", room);
 
+        List<Teachers> teachers = entityManager.createQuery("from Teachers", Teachers.class).getResultList();
+        List<Students> students = entityManager.createQuery("from Students", Students.class).getResultList();
 
+        List<ClassroomDetails> classroomDetails = entityManager.createQuery(
+                        "from ClassroomDetails where room.roomId = :roomId", ClassroomDetails.class)
+                .setParameter("roomId", id)
+                .getResultList();
+        Set<Teachers> uniqueTeachers = new LinkedHashSet<>();
+        Set<Students> uniqueStudents = new LinkedHashSet<>();
+
+        for (ClassroomDetails detail : classroomDetails) {
+            if (detail.getTeacher() != null) {
+                uniqueTeachers.add(detail.getTeacher());
+            }
+            if (detail.getStudent() != null) {
+                uniqueStudents.add(detail.getStudent());
+            }
+        }
+
+        model.addAttribute("teachers", teachers);
+        model.addAttribute("students", students);
+        model.addAttribute("classroomDetails", classroomDetails);
+        model.addAttribute("uniqueTeachers", uniqueTeachers);
+        model.addAttribute("uniqueStudents", uniqueStudents);
+
+        return "ChiTietLopHoc";
+    }
 
 }

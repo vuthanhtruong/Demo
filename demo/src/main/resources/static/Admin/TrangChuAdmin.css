@@ -7,7 +7,7 @@
 }
 
 body {
-    background: linear-gradient(to right, #141E30, #243B55);
+    background: radial-gradient(circle, #141E30, #243B55, #000000);
     color: white;
     min-height: 100vh;
     display: flex;
@@ -17,19 +17,20 @@ body {
     padding: 20px;
 }
 
-/* Container chính */
+/* Container */
 .container {
-    max-width: 1000px;
+    max-width: 1200px;
     width: 100%;
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(12px);
-    border-radius: 15px;
-    box-shadow: 0 0 30px rgba(0, 255, 255, 0.4);
     text-align: center;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(15px);
+    border-radius: 15px;
+    box-shadow: 0 10px 50px rgba(255, 255, 255, 0.3);
     animation: neonGlow 1.5s infinite alternate;
 }
 
+/* Neon Glow Animation */
 @keyframes neonGlow {
     from {
         box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
@@ -41,86 +42,84 @@ body {
 
 /* Header */
 .header {
-    padding: 15px;
-    font-size: 20px;
-    background: rgba(0, 0, 0, 0.3);
-    border-radius: 12px;
-    box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.2);
+    margin-bottom: 30px;
 }
 
 .header h2 {
-    font-size: 32px;
+    font-size: 36px;
+    margin-bottom: 15px;
+    color: #f8f9fa;
     text-shadow: 0px 0px 20px rgba(255, 255, 255, 1);
 }
 
 .header span {
-    font-size: 18px;
-    display: inline-block;
-    margin: 10px;
+    font-size: 16px;
+    color: #e0e0e0;
 }
 
 .header a {
-    padding: 10px 15px;
-    background: red;
-    color: white;
-    border-radius: 10px;
+    font-size: 16px;
+    color: #00c6ff;
     text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 8px;
     transition: 0.3s;
+    box-shadow: 0px 0px 10px rgba(0, 198, 255, 0.8);
 }
 
 .header a:hover {
-    background: darkred;
+    background: rgba(0, 198, 255, 0.3);
+    color: white;
     transform: scale(1.1);
 }
 
 /* Dashboard */
 .dashboard {
     display: flex;
-    justify-content: space-around;
-    margin-top: 20px;
     gap: 20px;
-    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .card {
+    width: 250px;
     background: rgba(255, 255, 255, 0.2);
-    width: 300px;
+    border-radius: 15px;
     padding: 20px;
-    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
     text-align: center;
-    box-shadow: 0 10px 30px rgba(0, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
     transition: 0.3s;
-    position: relative;
+}
+
+.card:hover {
+    transform: scale(1.05);
 }
 
 .card h3 {
-    font-size: 24px;
+    font-size: 22px;
+    color: #f8f9fa;
     margin-bottom: 10px;
+    text-shadow: 0px 0px 15px rgba(255, 255, 255, 1);
 }
 
 .card p {
-    font-size: 18px;
+    color: #e0e0e0;
     margin-bottom: 15px;
 }
 
 .card a {
     display: inline-block;
-    padding: 12px 18px;
     background: linear-gradient(to right, #00c6ff, #0072ff);
     color: white;
     text-decoration: none;
+    padding: 10px 15px;
     border-radius: 10px;
     font-weight: bold;
     transition: 0.3s;
-    box-shadow: 0px 0px 20px rgba(0, 198, 255, 0.8);
+    box-shadow: 0px 0px 15px rgba(0, 198, 255, 0.8);
 }
 
 .card a:hover {
     background: linear-gradient(to right, #0072ff, #00c6ff);
     transform: scale(1.1);
-}
-
-.card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 15px 40px rgba(0, 255, 255, 0.6);
 }

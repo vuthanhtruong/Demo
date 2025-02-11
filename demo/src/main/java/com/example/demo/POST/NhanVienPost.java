@@ -8,11 +8,10 @@ import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
@@ -315,13 +314,68 @@ public class NhanVienPost {
             return "redirect:/ThemLoaiPhongHoc?error=RoomTypeNotFound";
         }
 
-        // Cập nhật thông tin loại phòng học
         existingRoomType.setRoomTypeName(updatedRoomType.getRoomTypeName());
 
-        // Lưu thay đổi
+
         entityManager.merge(existingRoomType);
 
         return "redirect:/ThemLoaiPhongHoc";
+    }
+    @PostMapping("/ThemGiaoVienVaoLop")
+    public String ThemGiaoVienVaoLop(@RequestParam Long roomId, @RequestParam List<Long> teacherIds) {
+        Rooms room = entityManager.find(Rooms.class, roomId);
+
+        for (Long teacherId : teacherIds) {
+            Teachers teacher = entityManager.find(Teachers.class, teacherId);
+
+            if (teacher != null) {
+                // Kiểm tra xem giáo viên đã có ClassroomDetails trong phòng học này chưa
+                List<ClassroomDetails> existingDetails = entityManager.createQuery(
+                                "FROM ClassroomDetails WHERE room.roomId = :roomId AND teacher.teacherID = :teacherId", ClassroomDetails.class)
+                        .setParameter("roomId", roomId)
+                        .setParameter("teacherId", teacherId)
+                        .getResultList();
+
+                // Nếu chưa có, tạo mới ClassroomDetails
+                if (existingDetails.isEmpty()) {
+                    ClassroomDetails classroomDetail = new ClassroomDetails();
+                    classroomDetail.setRoom(room);
+                    classroomDetail.setTeacher(teacher);
+                    classroomDetail.setStudent(null); // Nếu không có học sinh, có thể bỏ qua
+                    entityManager.persist(classroomDetail);
+                }
+            }
+        }
+        return "redirect:/ChiTietLopHoc/" + roomId + "?success=updated";
+    }
+
+
+    @PostMapping("/ThemHocSinhVaoLop")
+    public String ThemHocSinhVaoLop(@RequestParam Long roomId, @RequestParam List<Long> studentIds) {
+        Rooms room = entityManager.find(Rooms.class, roomId);
+
+        for (Long studentId : studentIds) {
+            Students student = entityManager.find(Students.class, studentId);
+
+            if (student != null) {
+                // Kiểm tra xem học sinh đã có ClassroomDetails trong phòng học này chưa
+                List<ClassroomDetails> existingDetails = entityManager.createQuery(
+                                "FROM ClassroomDetails WHERE room.roomId = :roomId AND student.studentID = :studentId", ClassroomDetails.class)
+                        .setParameter("roomId", roomId)
+                        .setParameter("studentId", studentId)
+                        .getResultList();
+
+                // Nếu chưa có, tạo mới ClassroomDetails
+                if (existingDetails.isEmpty()) {
+                    ClassroomDetails classroomDetail = new ClassroomDetails();
+                    classroomDetail.setRoom(room);
+                    classroomDetail.setTeacher(null); // Nếu không có giáo viên, có thể bỏ qua
+                    classroomDetail.setStudent(student);
+                    entityManager.persist(classroomDetail);
+                }
+            }
+        }
+        return "redirect:/ChiTietLopHoc/" + roomId + "?success=updated";
     }
 
 

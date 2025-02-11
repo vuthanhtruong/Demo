@@ -1,0 +1,163 @@
+/* Reset các thiết lập mặc định */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Các phần tử chung cho body */
+body {
+    background-color: #f7f7f7;
+    color: #333;
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+    padding: 20px;
+    margin: 0;
+}
+
+/* Tiêu đề trang */
+h2, h3 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+/* Form */
+form {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 30px;
+    width: 100%;
+    max-width: 800px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    font-size: 1.2rem;
+    color: #34495e;
+    font-weight: 500;
+    margin-bottom: 10px;
+    display: block;
+}
+
+/* Lựa chọn checkbox (Giáo viên và Học sinh) hiển thị ngang */
+form div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Khoảng cách giữa các checkbox */
+    justify-content: flex-start;
+}
+
+form div label {
+    display: inline-flex;  /* Sử dụng inline-flex để các checkbox nằm ngang trong cùng một dòng */
+    align-items: center;   /* Căn giữa checkbox và nhãn theo chiều dọc */
+    gap: 10px;             /* Khoảng cách giữa checkbox và nhãn */
+    margin-bottom: 10px;   /* Khoảng cách giữa các dòng checkbox */
+}
+
+form div input[type="checkbox"] {
+    margin: 0; /* Loại bỏ margin mặc định của checkbox */
+}
+
+form div span {
+    font-size: 1rem;
+    color: #34495e;
+    font-weight: 500;
+}
+
+/* Nút bấm */
+button {
+    background-color: #3498db;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #2980b9;
+    transform: scale(1.05);
+}
+
+/* Các đường link */
+a {
+    color: #3498db;
+    text-decoration: none;
+    font-size: 1.1rem;
+    margin-top: 10px;
+    display: block;
+    text-align: center;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #2980b9;
+    text-decoration: underline;
+}
+
+/* Danh sách giáo viên và học sinh */
+ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 0;
+}
+
+ul li {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 200px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+ul li:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+span {
+    font-size: 1rem;
+    color: #34495e;
+    font-weight: 500;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    body {
+        padding: 15px;
+    }
+
+    h2, h3 {
+        font-size: 1.7rem;
+    }
+
+    button {
+        font-size: 1rem;
+        padding: 10px 20px;
+    }
+
+    a {
+        font-size: 1rem;
+    }
+
+    ul li {
+        width: 150px;
+        padding: 15px;
+    }
+}

@@ -18,7 +18,6 @@ import java.util.List;
 @Transactional
 public class GiaoVienGet {
 
-    // Thêm EntityManager, không dùng SessionFactory nữa
     @PersistenceContext
     private EntityManager entityManager;
 

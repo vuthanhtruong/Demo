@@ -1,148 +1,168 @@
-/* Reset cơ bản */
+/* Reset CSS */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Inter', 'Poppins', sans-serif;
 }
 
-/* Nền tổng thể */
 body {
-    background: linear-gradient(to right, #141E30, #243B55);
+    background: radial-gradient(circle, #141E30, #243B55, #000000);
     color: white;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
     padding: 20px;
 }
 
-/* Container chính */
+/* Container */
 .container {
-    max-width: 90%;
-    margin: auto;
+    max-width: 1200px;
+    width: 100%;
+    text-align: center;
+    padding: 30px;
     background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(10px);
-    padding: 20px;
+    backdrop-filter: blur(15px);
     border-radius: 15px;
-    box-shadow: 0 0 30px rgba(0, 255, 255, 0.4);
+    box-shadow: 0 10px 50px rgba(255, 255, 255, 0.3);
+    animation: neonGlow 1.5s infinite alternate;
 }
 
-/* Tiêu đề */
-h2 {
-    font-size: 26px;
-    text-shadow: 0px 0px 15px rgba(255, 255, 255, 1);
-    text-align: center;
+/* Neon Glow Animation */
+@keyframes neonGlow {
+    from {
+        box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+    }
+    to {
+        box-shadow: 0 0 40px rgba(0, 255, 255, 1);
+    }
+}
+
+/* Header */
+h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: #f8f9fa;
+    text-shadow: 0px 0px 20px rgba(255, 255, 255, 1);
+}
+
+a {
+    font-size: 16px;
+    color: #00c6ff;
+    text-decoration: none;
+    padding: 5px 15px;
+    border-radius: 8px;
+    transition: 0.3s;
+    box-shadow: 0px 0px 10px rgba(0, 198, 255, 0.8);
+    margin: 10px;
+}
+
+a:hover {
+    background: rgba(0, 198, 255, 0.3);
+    color: white;
+    transform: scale(1.1);
 }
 
 /* Form tìm kiếm */
-.input-group {
+form {
+    margin-bottom: 30px;
     display: flex;
     justify-content: center;
-    margin-bottom: 20px;
+    gap: 15px;
+    align-items: center;
 }
 
-.input-group input, .input-group select {
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
+form label {
     font-size: 16px;
-}
-
-.input-group input {
-    flex: 2;
-}
-
-.input-group select {
-    flex: 1;
-}
-
-.input-group button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    background: #007bff;
     color: white;
+}
+
+form select, form input, form button {
+    padding: 12px;
+    border-radius: 12px;
+    border: none;
     font-size: 16px;
+}
+
+form select {
+    background: #ff0099;
+    color: white;
+}
+
+form input {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    text-align: center;
+    border: 3px solid #00e1ff;
+}
+
+form button {
+    background: #00ff99;
+    color: white;
     cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0px 0px 20px rgba(0, 255, 153, 0.8);
 }
 
-.input-group button:hover {
-    filter: brightness(1.2);
+form button:hover {
+    background: #00cc88;
+    transform: scale(1.1);
 }
 
-/* Bảng dữ liệu */
+/* Table */
 table {
     width: 100%;
-    margin-top: 20px;
     border-collapse: collapse;
-    background: rgba(0, 0, 0, 0.3);
-    border-radius: 10px;
+    margin-top: 15px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
     overflow: hidden;
 }
 
 thead {
-    background: linear-gradient(to right, #00c6ff, #0072ff);
+    background: linear-gradient(to right, #ff0099, #9900ff);
+    color: white;
 }
 
-thead th {
-    padding: 15px;
+td, th {
+    padding: 14px;
+    text-align: center;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
     font-size: 18px;
-    text-align: left;
 }
 
-tbody tr {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+tr:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.02);
 }
 
-tbody td {
-    padding: 12px;
-    font-size: 16px;
-}
-
-tbody tr:hover {
-    background: rgba(255, 255, 255, 0.1);
-}
-
-/* Nút hành động */
-.btn {
-    padding: 8px 12px;
-    border-radius: 5px;
-    font-size: 14px;
-    cursor: pointer;
+td a {
     text-decoration: none;
-    font-weight: bold;
-}
-
-.btn-warning {
-    background: linear-gradient(to right, #ffcc00, #ff6600);
-    color: white;
-}
-
-.btn-danger {
-    background: linear-gradient(to right, #ff4b2b, #ff416c);
-    color: white;
-}
-
-.btn-secondary {
-    background: linear-gradient(to right, #7f00ff, #e100ff);
-    color: white;
-}
-
-.btn-success {
-    background: linear-gradient(to right, #00ff87, #007f5f);
-    color: white;
-}
-
-.btn:hover {
-    transform: scale(1.05);
-    filter: brightness(1.2);
-}
-
-/* Hiệu ứng hover chung */
-a {
-    text-decoration: none;
-    color: white;
-    font-weight: bold;
+    padding: 10px 15px;
+    border-radius: 12px;
     transition: 0.3s;
 }
 
-a:hover {
-    text-decoration: underline;
+td a:first-child {
+    background: #ffcc00;
+    color: black;
+    box-shadow: 0px 0px 15px rgba(255, 204, 0, 0.8);
+}
+
+td a:first-child:hover {
+    background: #e0a800;
+    transform: scale(1.1);
+}
+
+td a:last-child {
+    background: #ff0033;
+    color: white;
+    box-shadow: 0px 0px 15px rgba(255, 0, 51, 0.8);
+}
+
+td a:last-child:hover {
+    background: #cc0022;
+    transform: scale(1.1);
 }
