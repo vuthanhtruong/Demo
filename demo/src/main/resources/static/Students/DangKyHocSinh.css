@@ -1,5 +1,6 @@
-/* Import Fonts */
+/* Import Fonts & Icons */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css');
 
 /* Reset CSS */
 * {
@@ -9,9 +10,9 @@
     font-family: 'Poppins', sans-serif;
 }
 
-/* Body & Background */
+/* Background Gradient */
 body {
-    background: #f7f7f7;
+    background: linear-gradient(135deg, #3498db, #8e44ad);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -21,31 +22,50 @@ body {
 
 /* Container */
 .container {
-    max-width: 600px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    padding: 30px;
     width: 100%;
-    padding: 20px;
+    max-width: 600px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 1s ease-in-out;
 }
 
-/* Card Style */
-.card {
-    background-color: #fff;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+/* Animation FadeIn */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Title */
-h2 {
+h1 {
+    color: #fff;
     font-size: 28px;
-    font-weight: 600;
-    color: #333;
+    font-weight: 700;
     margin-bottom: 30px;
-    text-align: center;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
 }
 
-/* Form Fields */
-.form-label {
+/* Form Elements */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+/* Labels */
+label {
+    color: #fff;
     font-weight: 600;
-    color: #333;
     margin-bottom: 8px;
 }
 
@@ -56,62 +76,75 @@ input[type="password"],
 select {
     width: 100%;
     padding: 12px;
-    border-radius: 8px;
-    border: 1px solid #ddd;
+    border-radius: 10px;
+    border: none;
     font-size: 16px;
-    margin-bottom: 20px;
-    background-color: #f9f9f9;
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    outline: none;
     transition: all 0.3s ease-in-out;
 }
 
-/* Input Focus Effect */
+/* Focus Effect */
 input:focus, select:focus {
-    outline: none;
-    border: 2px solid #4CAF50;
-    box-shadow: 0 0 5px rgba(76, 175, 80, 0.4);
+    border: 2px solid #00ff99;
+    box-shadow: 0 0 8px rgba(0, 255, 153, 0.6);
     transform: scale(1.02);
 }
 
-/* Button Styles */
-button[type="submit"] {
-    background-color: #4CAF50;
-    color: #fff;
-    padding: 12px;
-    font-size: 16px;
+/* Placeholder Styling */
+input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Buttons */
+button[type="submit"], .btn-outline-secondary {
+    display: inline-block;
+    padding: 12px 20px;
     border-radius: 8px;
-    border: none;
-    cursor: pointer;
+    font-size: 18px;
     font-weight: 600;
-    transition: background-color 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Primary Button */
+button[type="submit"] {
+    background: linear-gradient(135deg, #ff9966, #ff5e62);
+    color: white;
+    border: none;
 }
 
 button[type="submit"]:hover {
-    background-color: #45a049;
+    background: linear-gradient(135deg, #ff5e62, #ff9966);
+    box-shadow: 0 5px 15px rgba(255, 94, 98, 0.4);
+    transform: scale(1.05);
 }
 
+/* Secondary Button */
 .btn-outline-secondary {
-    background-color: transparent;
-    border: 2px solid #4CAF50;
-    color: #4CAF50;
-    padding: 12px;
-    font-size: 16px;
-    border-radius: 8px;
-    font-weight: 600;
-    transition: background-color 0.3s ease;
+    background: transparent;
+    border: 2px solid #fff;
+    color: white;
 }
 
 .btn-outline-secondary:hover {
-    background-color: #4CAF50;
-    color: #fff;
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
+    transform: scale(1.05);
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
     .container {
+        width: 100%;
         padding: 15px;
     }
 
-    h2 {
+    h1 {
         font-size: 24px;
     }
 }

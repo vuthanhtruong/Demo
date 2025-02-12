@@ -1,134 +1,189 @@
-/* Reset CSS */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+:root {
+    --bg-gradient: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    --glass-bg: rgba(255, 255, 255, 0.1);
+    --border-glass: rgba(255, 255, 255, 0.3);
+    --shadow-glass: rgba(0, 0, 0, 0.2);
+    --neon-blue: #00eaff;
+    --neon-purple: #9d00ff;
+    --neon-pink: #ff0080;
+    --neon-green: #00ff88;
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Inter', 'Poppins', sans-serif;
+    font-family: 'Orbitron', sans-serif;
 }
 
 body {
-    background: linear-gradient(to right, #34c7ff, #4e8df1);
+    background: var(--bg-gradient);
     color: white;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 16px;
+    text-align: center;
+    padding: 30px;
+    animation: fadeIn 1s ease-in-out;
 }
 
-/* Container */
-.container {
-    background: rgba(0, 0, 0, 0.6);
-    border-radius: 10px;
-    padding: 40px;
-    width: 100%;
-    max-width: 600px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-}
-
-/* Header */
-h2 {
-    color: white;
-    font-size: 2.5em;
+h1 {
+    text-transform: uppercase;
+    text-shadow: 0 0 15px var(--neon-blue);
     margin-bottom: 20px;
+}
+
+.container {
+    max-width: 90%;
+    margin: auto;
+}
+
+p {
+    font-size: 18px;
+}
+
+input, select {
+    background: var(--glass-bg);
+    color: white;
+    border: 1px solid var(--border-glass);
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 8px var(--neon-blue);
+    transition: 0.3s;
+}
+
+input:focus, select:focus {
+    outline: none;
+    box-shadow: 0 0 12px var(--neon-pink);
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: var(--glass-bg);
+    border: 1px solid var(--border-glass);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 10px var(--shadow-glass);
+    border-radius: 15px;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+thead {
+    background: var(--neon-blue);
+    color: black;
+}
+
+th, td {
+    padding: 12px;
+    border-bottom: 1px solid var(--border-glass);
     text-align: center;
 }
 
-/* Error Messages */
-.alert {
-    padding: 15px;
-    background-color: #f44336;
-    color: white;
-    border-radius: 5px;
-    margin-bottom: 20px;
+tr:hover {
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 0 15px var(--neon-green);
+    transition: 0.3s;
 }
 
-.alert p {
-    margin: 0;
-    font-size: 1em;
-}
-
-/* Form */
-form {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-}
-
-label {
-    font-size: 18px;
-    color: white;
-    display: block;
-    margin-bottom: 8px;
-}
-
-input[type="text"], input[type="email"], select {
-    width: 100%;
-    padding: 10px;
+.btn {
+    display: inline-block;
+    padding: 8px 12px;
     border-radius: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    background-color: rgba(255, 255, 255, 0.1);
+    text-transform: uppercase;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-secondary {
+    background: var(--neon-blue);
+    color: black;
+    box-shadow: 0 0 10px var(--neon-blue);
+}
+
+.btn-secondary:hover {
+    background: var(--neon-green);
+    box-shadow: 0 0 15px var(--neon-green);
+}
+
+.btn-success {
+    background: var(--neon-purple);
     color: white;
-    font-size: 16px;
-    margin-bottom: 15px;
+    box-shadow: 0 0 10px var(--neon-purple);
 }
 
-input[type="text"]:focus, input[type="email"]:focus, select:focus {
-    outline: none;
-    border: 1px solid #00c6ff;
-    background-color: rgba(255, 255, 255, 0.2);
+.btn-success:hover {
+    background: var(--neon-pink);
+    box-shadow: 0 0 15px var(--neon-pink);
 }
 
-button[type="submit"] {
+.btn-warning {
+    background: var(--neon-green);
+    color: black;
+    box-shadow: 0 0 10px var(--neon-green);
+}
+
+.btn-warning:hover {
+    background: var(--neon-blue);
+    box-shadow: 0 0 15px var(--neon-blue);
+}
+
+.btn-danger {
+    background: var(--neon-pink);
+    color: white;
+    box-shadow: 0 0 10px var(--neon-pink);
+}
+
+.btn-danger:hover {
+    background: var(--neon-purple);
+    box-shadow: 0 0 15px var(--neon-purple);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.container {
+    max-width: 50%;
+    margin: auto;
+    padding: 30px;
+    background: var(--glass-bg);
+    border-radius: 15px;
+    box-shadow: 0 0 15px var(--neon-blue);
+    backdrop-filter: blur(15px);
+    border: 2px solid var(--border-glass);
+}
+
+h2 {
+    text-align: center;
+    color: var(--neon-blue);
+    text-shadow: 0 0 10px var(--neon-blue);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mb-3 {
+    width: 100%;
+    text-align: left;
+}
+
+input, select {
     width: 100%;
     padding: 12px;
-    background: linear-gradient(to right, #00c6ff, #00aaff);
-    color: white;
-    font-size: 18px;
-    font-weight: bold;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-button[type="submit"]:hover {
-    background: linear-gradient(to right, #00aaff, #00c6ff);
-    transform: scale(1.05);
-}
-
-/* Secondary Button (Back) */
-.text-center a {
-    display: inline-block;
-    text-align: center;
+button {
+    width: 80%;
     margin-top: 15px;
-    padding: 10px 20px;
-    background-color: #888;
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
-    border-radius: 8px;
-    text-decoration: none;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.text-center a:hover {
-    background-color: #666;
-    transform: scale(1.05);
-}
-
-/* Responsiveness */
-@media (max-width: 768px) {
-    form {
-        padding: 20px;
-    }
-
-    h2 {
-        font-size: 2em;
-    }
-
-    button[type="submit"] {
-        font-size: 16px;
-    }
 }

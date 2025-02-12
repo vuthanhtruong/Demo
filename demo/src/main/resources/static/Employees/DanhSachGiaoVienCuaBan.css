@@ -1,121 +1,152 @@
-/* Đặt nền tối với gradient */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+:root {
+    --bg-gradient: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    --glass-bg: rgba(255, 255, 255, 0.1);
+    --border-glass: rgba(255, 255, 255, 0.3);
+    --shadow-glass: rgba(0, 0, 0, 0.2);
+    --neon-blue: #00eaff;
+    --neon-purple: #9d00ff;
+    --neon-pink: #ff0080;
+    --neon-green: #00ff88;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Orbitron', sans-serif;
+}
+
 body {
-    background: linear-gradient(135deg, #0f172a, #1e293b);
-    color: #ffffff;
-    font-family: 'Poppins', sans-serif;
-}
-
-/* Tiêu đề với hiệu ứng neon */
-h1 {
-    color: #00eaff;
-    text-shadow: 0 0 10px rgba(0, 234, 255, 0.8);
-}
-
-/* Container chính với hiệu ứng Glassmorphism */
-.container {
-    background: rgba(255, 255, 255, 0.1);
-    box-shadow: 0 8px 32px rgba(0, 234, 255, 0.2);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-radius: 15px;
-    padding: 30px;
-}
-
-/* Thanh tìm kiếm với hiệu ứng mềm */
-.input-group {
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-/* Ô nhập tìm kiếm */
-#searchInput {
-    background: rgba(255, 255, 255, 0.15);
-    border: none;
-    color: #ffffff;
-}
-
-#searchInput::placeholder {
-    color: rgba(255, 255, 255, 0.6);
-}
-
-#searchInput:focus {
-    background: rgba(255, 255, 255, 0.25);
-    box-shadow: 0px 0px 8px rgba(0, 234, 255, 0.7);
-}
-
-/* Nút bấm với hiệu ứng phát sáng */
-.btn {
-    border: none;
-    border-radius: 12px;
-    padding: 10px 15px;
-    font-size: 16px;
-    font-weight: bold;
-    text-transform: uppercase;
-    transition: 0.3s ease-in-out;
-    color: #ffffff !important;
-}
-
-/* Nút home */
-.btn-secondary {
-    background: linear-gradient(145deg, #6c757d, #495057);
-    box-shadow: 0px 0px 10px rgba(108, 117, 125, 0.7);
-}
-
-/* Nút thêm giáo viên */
-.btn-success {
-    background: linear-gradient(145deg, #28a745, #1e7e34);
-    box-shadow: 0px 0px 10px rgba(40, 167, 69, 0.7);
-}
-
-/* Nút sửa */
-.btn-warning {
-    background: linear-gradient(145deg, #ffc107, #d39e00);
-    box-shadow: 0px 0px 10px rgba(255, 193, 7, 0.7);
-}
-
-/* Nút xóa */
-.btn-danger {
-    background: linear-gradient(145deg, #dc3545, #a71d2a);
-    box-shadow: 0px 0px 10px rgba(220, 53, 69, 0.7);
-}
-
-/* Hiệu ứng hover sáng */
-.btn:hover {
-    transform: scale(1.05);
-    box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.8);
-}
-
-/* Bảng danh sách giáo viên */
-.table {
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.1);
-}
-
-/* Header của bảng */
-.table-dark {
-    background: linear-gradient(145deg, #0f172a, #1e293b);
-    text-transform: uppercase;
-}
-
-/* Dòng của bảng */
-.table tbody tr {
-    background: rgba(255, 255, 255, 0.1);
-    transition: all 0.3s ease-in-out;
-}
-
-/* Hover vào từng dòng */
-.table tbody tr:hover {
-    background: rgba(0, 234, 255, 0.2);
-}
-
-/* Căn chỉnh text trong bảng */
-.table th, .table td {
+    background: var(--bg-gradient);
+    color: white;
     text-align: center;
-    color: #ffffff;
+    padding: 30px;
+    animation: fadeIn 1s ease-in-out;
 }
 
-/* Icon */
-.fas {
-    margin-right: 5px;
+h1 {
+    text-transform: uppercase;
+    text-shadow: 0 0 15px var(--neon-blue);
+    margin-bottom: 20px;
+}
+
+.container {
+    max-width: 90%;
+    margin: auto;
+}
+
+p {
+    font-size: 18px;
+}
+
+input, select {
+    background: var(--glass-bg);
+    color: white;
+    border: 1px solid var(--border-glass);
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 8px var(--neon-blue);
+    transition: 0.3s;
+}
+
+input:focus, select:focus {
+    outline: none;
+    box-shadow: 0 0 12px var(--neon-pink);
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: var(--glass-bg);
+    border: 1px solid var(--border-glass);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 10px var(--shadow-glass);
+    border-radius: 15px;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+thead {
+    background: var(--neon-blue);
+    color: black;
+}
+
+th, td {
+    padding: 12px;
+    border-bottom: 1px solid var(--border-glass);
+    text-align: center;
+}
+
+tr:hover {
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 0 15px var(--neon-green);
+    transition: 0.3s;
+}
+
+.btn {
+    display: inline-block;
+    padding: 8px 12px;
+    border-radius: 8px;
+    text-transform: uppercase;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-secondary {
+    background: var(--neon-blue);
+    color: black;
+    box-shadow: 0 0 10px var(--neon-blue);
+}
+
+.btn-secondary:hover {
+    background: var(--neon-green);
+    box-shadow: 0 0 15px var(--neon-green);
+}
+
+.btn-success {
+    background: var(--neon-purple);
+    color: white;
+    box-shadow: 0 0 10px var(--neon-purple);
+}
+
+.btn-success:hover {
+    background: var(--neon-pink);
+    box-shadow: 0 0 15px var(--neon-pink);
+}
+
+.btn-warning {
+    background: var(--neon-green);
+    color: black;
+    box-shadow: 0 0 10px var(--neon-green);
+}
+
+.btn-warning:hover {
+    background: var(--neon-blue);
+    box-shadow: 0 0 15px var(--neon-blue);
+}
+
+.btn-danger {
+    background: var(--neon-pink);
+    color: white;
+    box-shadow: 0 0 10px var(--neon-pink);
+}
+
+.btn-danger:hover {
+    background: var(--neon-purple);
+    box-shadow: 0 0 15px var(--neon-purple);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

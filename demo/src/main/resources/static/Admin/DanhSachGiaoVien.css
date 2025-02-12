@@ -1,171 +1,147 @@
-/* Reset CSS */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+:root {
+    --bg-gradient: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    --glass-bg: rgba(255, 255, 255, 0.1);
+    --border-glass: rgba(255, 255, 255, 0.3);
+    --shadow-glass: rgba(0, 0, 0, 0.2);
+    --neon-blue: #00eaff;
+    --neon-purple: #9d00ff;
+    --neon-pink: #ff0080;
+    --neon-green: #00ff88;
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Inter', 'Poppins', sans-serif;
+    font-family: 'Orbitron', sans-serif;
 }
 
 body {
-    background: radial-gradient(circle, #141E30, #243B55, #000000);
+    background: var(--bg-gradient);
     color: white;
-    min-height: 100vh;
+    text-align: center;
+    padding: 30px;
     display: flex;
+    justify-content: center;
     align-items: center;
-    justify-content: center;
+    min-height: 100vh;
     flex-direction: column;
-    padding: 20px;
-    overflow-y: auto;
+    animation: fadeIn 1s ease-in-out;
 }
 
-/* Container */
+/* Container chính với viền bo tròn */
 .container {
-    max-width: 1200px;
-    width: 100%;
-    text-align: center;
+    max-width: 85%;
+    background: var(--glass-bg);
     padding: 25px;
-    background: rgba(255, 255, 255, 0.15);
+    border-radius: 25px; /* Bo tròn mạnh hơn */
+    border: 2px solid var(--border-glass);
+    box-shadow: 0 0 20px var(--shadow-glass);
     backdrop-filter: blur(15px);
-    border-radius: 15px;
-    box-shadow: 0 10px 50px rgba(255, 255, 255, 0.3);
-    animation: neonGlow 1.5s infinite alternate;
 }
 
-@keyframes neonGlow {
-    from {
-        box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
-    }
-    to {
-        box-shadow: 0 0 40px rgba(0, 255, 255, 1);
-    }
-}
-
-.container h2 {
-    font-size: 36px;
-    margin-bottom: 20px;
-    color: #f8f9fa;
-    text-shadow: 0px 0px 20px rgba(255, 255, 255, 1);
-}
-
-/* Form tìm kiếm */
-form {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-bottom: 20px;
-    flex-wrap: wrap;
-}
-
-input, select, button {
-    padding: 12px;
-    border-radius: 12px;
-    border: none;
-    font-size: 18px;
-    text-align: center;
-}
-
-input {
-    flex: 1;
-    border: 3px solid #00e1ff;
-    background: rgba(255, 255, 255, 0.2);
-    color: white;
-}
-
-select {
-    background: #ff0099;
-    color: white;
-    cursor: pointer;
-}
-
-button {
-    background: #00ff99;
-    color: white;
-    cursor: pointer;
-    transition: 0.3s;
-    box-shadow: 0px 0px 20px rgba(0, 255, 153, 0.8);
-}
-
-button:hover {
-    background: #00cc88;
-    transform: scale(1.1);
-}
-
-/* Table */
-table {
+/* Bảng với thiết kế bo tròn */
+.teacher-table {
     width: 100%;
+    max-width: 1000px;
     border-collapse: collapse;
-    margin-top: 15px;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 12px;
-    overflow: hidden;
+    border-radius: 20px;
+    overflow: hidden; /* Bo tròn mép bảng */
+    background: var(--glass-bg);
+    border: 2px solid var(--border-glass);
+    box-shadow: 0 4px 12px var(--shadow-glass);
 }
 
 thead {
-    background: linear-gradient(to right, #ff0099, #9900ff);
-    color: white;
+    background: var(--neon-blue);
+    color: black;
 }
 
 th, td {
-    padding: 14px;
+    padding: 15px;
+    border: 1px solid var(--border-glass);
     text-align: center;
-    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
-    font-size: 18px;
-    white-space: nowrap;
-}
-
-th {
-    font-size: 20px;
-    text-transform: uppercase;
 }
 
 tr:hover {
-    background: rgba(255, 255, 255, 0.3);
-}
-
-td a {
-    text-decoration: none;
-    padding: 10px 15px;
-    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 0 20px var(--neon-green);
     transition: 0.3s;
+    border-radius: 20px;
 }
 
-td a:first-child {
-    background: #ffcc00;
-    color: black;
-    box-shadow: 0px 0px 15px rgba(255, 204, 0, 0.8);
-}
-
-td a:first-child:hover {
-    background: #e0a800;
-    transform: scale(1.1);
-}
-
-td a:last-child {
-    background: #ff0033;
-    color: white;
-    box-shadow: 0px 0px 15px rgba(255, 0, 51, 0.8);
-}
-
-td a:last-child:hover {
-    background: #cc0022;
-    transform: scale(1.1);
-}
-
-/* Links */
-a {
+/* Các nút với hiệu ứng neon và bo tròn */
+.btn {
     display: inline-block;
     padding: 12px 18px;
-    background: linear-gradient(to right, #00c6ff, #0072ff);
-    color: white;
-    text-decoration: none;
-    border-radius: 12px;
+    border-radius: 20px; /* Bo tròn tối đa */
+    text-transform: uppercase;
     font-weight: bold;
-    margin-top: 10px;
+    cursor: pointer;
     transition: 0.3s;
-    box-shadow: 0px 0px 20px rgba(0, 198, 255, 0.8);
+    font-size: 14px;
+    border: none;
+    box-shadow: 0 0 10px var(--neon-blue);
 }
 
-a:hover {
-    background: linear-gradient(to right, #0072ff, #00c6ff);
-    transform: scale(1.1);
+.btn:hover {
+    box-shadow: 0 0 15px var(--neon-green);
+    transform: scale(1.05);
+}
+
+/* Từng loại nút */
+.btn-home {
+    background: var(--neon-blue);
+    color: black;
+}
+
+.btn-add {
+    background: var(--neon-purple);
+    color: white;
+}
+
+.btn-edit {
+    background: var(--neon-green);
+    color: black;
+}
+
+.btn-delete {
+    background: var(--neon-pink);
+    color: white;
+}
+
+.btn-delete:hover {
+    background: var(--neon-purple);
+    box-shadow: 0 0 20px var(--neon-purple);
+}
+
+/* Input và select với bo tròn */
+input, select {
+    background: var(--glass-bg);
+    color: white;
+    border: 1px solid var(--border-glass);
+    padding: 12px;
+    border-radius: 20px;
+    box-shadow: 0 0 10px var(--neon-blue);
+    transition: 0.3s;
+}
+
+input:focus, select:focus {
+    outline: none;
+    box-shadow: 0 0 15px var(--neon-pink);
+    transform: scale(1.05);
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

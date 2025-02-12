@@ -331,7 +331,6 @@ public class NhanVienGet {
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("error", "Lỗi khi cập nhật lịch trình.");
         }
-
         return "redirect:/BoTriLopHoc";
     }
 

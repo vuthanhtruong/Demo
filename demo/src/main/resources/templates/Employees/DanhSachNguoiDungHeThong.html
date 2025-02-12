@@ -2,14 +2,14 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>Danh Sách Người Dùng</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <title>📋 Danh Sách Người Dùng</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <link rel="stylesheet" href="/DanhSachNguoiDungHeThong.css">
+  <link rel="stylesheet" href="/Employees/DanhSachNguoiDungHeThong.css">
 </head>
 <body>
 <div class="container mt-5">
   <h1 class="text-center text-primary"><i class="fas fa-users"></i> Danh Sách Người Dùng Hệ Thống</h1>
+
   <div class="text-center mt-4">
     <a th:href="@{/TrangChuNhanVien}" class="btn btn-secondary">
       <i class="fas fa-arrow-left"></i> Quay lại
@@ -23,18 +23,18 @@
       <table class="table table-striped">
         <thead class="table-dark">
         <tr>
-          <th>ID</th>
-          <th>Họ và Tên</th>
-          <th>Email</th>
-          <th>Số Điện Thoại</th>
+          <th>🆔 ID</th>
+          <th>👤 Họ và Tên</th>
+          <th>📧 Email</th>
+          <th>📞 Số Điện Thoại</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="emp : ${employee}">
           <td th:text="${emp.employeeID}"></td>
-          <td th:text="${emp.firstName} + ' ' + ${emp.lastName}"></td>
-          <td th:text="${emp.email}"></td>
-          <td th:text="${emp.phoneNumber}"></td>
+          <td><i class="fas fa-user"></i> <span th:text="${emp.firstName} + ' ' + ${emp.lastName}"></span></td>
+          <td><i class="fas fa-envelope"></i> <span th:text="${emp.email}"></span></td>
+          <td><i class="fas fa-phone-alt"></i> <span th:text="${emp.phoneNumber}"></span></td>
         </tr>
         </tbody>
       </table>
@@ -46,22 +46,22 @@
       <table class="table table-striped">
         <thead class="table-dark">
         <tr>
-          <th>ID</th>
-          <th>Họ và Tên</th>
-          <th>Email</th>
-          <th>Số Điện Thoại</th>
-          <th>Người Quản Lý</th>
+          <th>🆔 ID</th>
+          <th>👤 Họ và Tên</th>
+          <th>📧 Email</th>
+          <th>📞 Số Điện Thoại</th>
+          <th>👑 Người Quản Lý</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="teacher : ${teachers}">
           <td th:text="${teacher.teacherID}"></td>
-          <td th:text="${teacher.firstName} + ' ' + ${teacher.lastName}"></td>
-          <td th:text="${teacher.email}"></td>
-          <td th:text="${teacher.phoneNumber}"></td>
+          <td><i class="fas fa-user"></i> <span th:text="${teacher.firstName} + ' ' + ${teacher.lastName}"></span></td>
+          <td><i class="fas fa-envelope"></i> <span th:text="${teacher.email}"></span></td>
+          <td><i class="fas fa-phone-alt"></i> <span th:text="${teacher.phoneNumber}"></span></td>
           <td>
-            <span th:if="${teacher.employee}" th:text="${teacher.employee.firstName} + ' ' + ${teacher.employee.lastName}"></span>
-            <span th:unless="${teacher.employee}">Không có</span>
+            <span th:if="${teacher.employee}"><i class="fas fa-user-tie"></i> <span th:text="${teacher.employee.firstName} + ' ' + ${teacher.employee.lastName}"></span></span>
+            <span th:unless="${teacher.employee}"><i class="fas fa-times-circle text-danger"></i> Không có</span>
           </td>
         </tr>
         </tbody>
@@ -74,22 +74,22 @@
       <table class="table table-striped">
         <thead class="table-dark">
         <tr>
-          <th>ID</th>
-          <th>Họ và Tên</th>
-          <th>Email</th>
-          <th>Số Điện Thoại</th>
-          <th>Người Quản Lý</th>
+          <th>🆔 ID</th>
+          <th>👤 Họ và Tên</th>
+          <th>📧 Email</th>
+          <th>📞 Số Điện Thoại</th>
+          <th>👑 Người Quản Lý</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="student : ${students}">
           <td th:text="${student.studentID}"></td>
-          <td th:text="${student.firstName} + ' ' + ${student.lastName}"></td>
-          <td th:text="${student.email}"></td>
-          <td th:text="${student.phoneNumber}"></td>
+          <td><i class="fas fa-user"></i> <span th:text="${student.firstName} + ' ' + ${student.lastName}"></span></td>
+          <td><i class="fas fa-envelope"></i> <span th:text="${student.email}"></span></td>
+          <td><i class="fas fa-phone-alt"></i> <span th:text="${student.phoneNumber}"></span></td>
           <td>
-            <span th:if="${student.employee}" th:text="${student.employee.firstName} + ' ' + ${student.employee.lastName}"></span>
-            <span th:unless="${student.employee}">Không có</span>
+            <span th:if="${student.employee}"><i class="fas fa-user-tie"></i> <span th:text="${student.employee.firstName} + ' ' + ${student.employee.lastName}"></span></span>
+            <span th:unless="${student.employee}"><i class="fas fa-times-circle text-danger"></i> Không có</span>
           </td>
         </tr>
         </tbody>

@@ -341,7 +341,7 @@ public class NhanVienPost {
                     ClassroomDetails classroomDetail = new ClassroomDetails();
                     classroomDetail.setRoom(room);
                     classroomDetail.setTeacher(teacher);
-                    classroomDetail.setStudent(null); // Nếu không có học sinh, có thể bỏ qua
+                    classroomDetail.setStudent(null);
                     entityManager.persist(classroomDetail);
                 }
             }

@@ -3,13 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <title>Danh Sách Học Sinh</title>
-  <link rel="stylesheet" href="/DanhSachHocSinh.css">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/Admin/DanhSachHocSinh.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
+
 <div class="container mt-5">
-  <h2 class="mb-4"><i class="fas fa-user-graduate"></i> Danh Sách Học Sinh</h2>
-  <div class="text-center mt-3">
+
+  <!-- Tiêu đề -->
+  <div class="text-center mb-4">
+    <h2><i class="fas fa-user-graduate"></i> Danh Sách Học Sinh</h2>
+  </div>
+
+  <!-- Nút quay lại trang chủ -->
+  <div class="text-center mb-4">
     <a href="/TrangChuAdmin" class="btn btn-secondary">
       <i class="fas fa-arrow-left"></i> Quay Lại Trang Chủ Admin
     </a>
@@ -28,44 +37,53 @@
       </button>
     </div>
   </form>
-  <a href="/ThemHocSinh" class="btn btn-success">
-    <i class="fas fa-user-plus"></i> Thêm Học Sinh
-  </a>
 
-  <table class="table table-bordered">
-    <thead>
-    <tr>
-      <th><i class="fas fa-id-badge"></i> ID</th>
-      <th><i class="fas fa-user"></i> Họ</th>
-      <th><i class="fas fa-user"></i> Tên</th>
-      <th><i class="fas fa-envelope"></i> Email</th>
-      <th><i class="fas fa-phone"></i> Số điện thoại</th>
-      <th><i class="fas fa-id-card"></i> MIS ID</th>
-      <th><i class="fas fa-user-tie"></i> Nhân viên phụ trách</th>
-      <th><i class="fas fa-cogs"></i> Hành động</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="student : ${students}">
-      <td th:text="${student.studentID}"></td>
-      <td th:text="${student.lastName}"></td>
-      <td th:text="${student.firstName}"></td>
-      <td th:text="${student.email}"></td>
-      <td th:text="${student.phoneNumber}"></td>
-      <td th:text="${student.misId}"></td>
-      <td th:text="${student.employee != null ? student.employee.firstName + ' ' + student.employee.lastName : 'Không có'}"></td>
-      <td>
-        <a th:href="@{/SuaHocSinh/{id}(id=${student.studentID})}" class="btn btn-warning">
-          <i class="fas fa-edit"></i> Sửa
-        </a>
-        <a th:href="@{/XoaHocSinh/{id}(id=${student.studentID})}" class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa học sinh này?');">
-          <i class="fas fa-trash"></i> Xóa
-        </a>
-      </td>
-    </tr>
-    </tbody>
-  </table>
+  <!-- Nút thêm học sinh -->
+  <div class="mb-4">
+    <a href="/ThemHocSinh" class="btn btn-success">
+      <i class="fas fa-user-plus"></i> Thêm Học Sinh
+    </a>
+  </div>
+
+  <!-- Bảng danh sách học sinh -->
+  <div class="table-responsive">
+    <table class="table table-bordered">
+      <thead class="table-dark">
+      <tr>
+        <th><i class="fas fa-id-badge"></i> ID</th>
+        <th><i class="fas fa-user"></i> Họ</th>
+        <th><i class="fas fa-user"></i> Tên</th>
+        <th><i class="fas fa-envelope"></i> Email</th>
+        <th><i class="fas fa-phone"></i> Số điện thoại</th>
+        <th><i class="fas fa-id-card"></i> MIS ID</th>
+        <th><i class="fas fa-user-tie"></i> Nhân viên phụ trách</th>
+        <th><i class="fas fa-cogs"></i> Hành động</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="student : ${students}">
+        <td th:text="${student.studentID}"></td>
+        <td th:text="${student.lastName}"></td>
+        <td th:text="${student.firstName}"></td>
+        <td th:text="${student.email}"></td>
+        <td th:text="${student.phoneNumber}"></td>
+        <td th:text="${student.misId}"></td>
+        <td th:text="${student.employee != null ? student.employee.firstName + ' ' + student.employee.lastName : 'Không có'}"></td>
+        <td class="text-center">
+          <a th:href="@{/SuaHocSinh/{id}(id=${student.studentID})}" class="btn btn-warning btn-sm">
+            <i class="fas fa-edit"></i> Sửa
+          </a>
+          <a th:href="@{/XoaHocSinh/{id}(id=${student.studentID})}" class="btn btn-danger btn-sm"
+             onclick="return confirm('Bạn có chắc chắn muốn xóa học sinh này?');">
+            <i class="fas fa-trash"></i> Xóa
+          </a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
 
 </div>
+
 </body>
 </html>
