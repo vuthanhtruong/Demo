@@ -8,6 +8,7 @@
 <body>
 <h2>Chi Tiết Lớp Học</h2>
 <a href="/BoTriLopHoc">Quay lại</a>
+
 <form action="#" th:action="@{/ThemGiaoVienVaoLop}" method="post">
   <input type="hidden" name="roomId" th:value="${room.roomId}" />
 
@@ -36,6 +37,8 @@
 <ul>
   <li th:each="teacher : ${uniqueTeachers}">
     <span th:text="${teacher.firstName + ' ' + teacher.lastName}"></span>
+    <a th:href="@{/XoaGiaoVienTrongLop(teacherId=${teacher.teacherID}, roomId=${room.roomId})}">[Xóa]</a>
+
   </li>
 </ul>
 
@@ -43,6 +46,8 @@
 <ul>
   <li th:each="student : ${uniqueStudents}">
     <span th:text="${student.firstName + ' ' + student.lastName}"></span>
+    <a th:href="@{/XoaHocSinhTrongLop(studentId=${student.studentID}, roomId=${room.roomId})}">[Xóa]</a>
+
   </li>
 </ul>
 <br>

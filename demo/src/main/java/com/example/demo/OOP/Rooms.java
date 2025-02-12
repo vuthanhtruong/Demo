@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "Rooms")
 @Getter
@@ -27,10 +29,31 @@ public class Rooms {
     @JoinColumn(name = "EmployeeID", nullable = false)
     private Employees EmployeeID;  // Liên kết với Employee (ManyToOne)
 
+    @Column(name = "StartTime", nullable = true)
+    private LocalDateTime startTime;
+
+    @Column(name = "EndTime", nullable = true)
+    private LocalDateTime endTime;
+
     public Rooms(Long roomId, String roomName, RoomTypes roomTypeID, Employees employeeID) {
         this.roomId = roomId;
         this.roomName = roomName;
         this.roomTypeID = roomTypeID;
         this.EmployeeID = employeeID;
+    }
+    public LocalDateTime getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(LocalDateTime startTime) {
+        this.startTime = startTime;
+    }
+
+    public LocalDateTime getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(LocalDateTime endTime) {
+        this.endTime = endTime;
     }
 }

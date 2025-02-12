@@ -1,40 +1,82 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bố Trí Lớp Học</title>
     <link rel="stylesheet" th:href="@{/BoTriLopHoc.css}">
 </head>
-<body class="container mt-4">
-
-<h2 class="text-center mb-4">Bố Trí Lớp Học</h2>
-
-<!-- Nút Quay Lại -->
-<div class="mb-3">
+<body>
+<header class="text-center">
+    <h1>Bố Trí Lớp Học</h1>
+</header>
+<nav class="mb-3">
     <a th:href="@{/TrangChuNhanVien}" class="btn btn-secondary">Quay Lại Trang Chủ Nhân Viên</a>
-</div>
+</nav>
+<main>
+    <section>
+        <table class="table table-bordered" role="table" aria-label="Danh sách phòng học">
+            <thead class="table-dark">
+            <tr>
+                <th>ID Phòng</th>
+                <th>Tên Phòng</th>
+                <th>Thời Gian Bắt Đầu</th>
+                <th>Thời Gian Kết Thúc</th>
+                <th>Chi Tiết</th>
+                <th>Hành Động</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="room : ${rooms}">
+                <form th:action="@{/CapNhatLichTrinh}" method="post">
+                    <td th:text="${room.roomId}"></td>
+                    <td th:text="${room.roomName}"></td>
+                    <td>
+                        <input type="hidden" name="roomId" th:value="${room.roomId}" />
+                        <input type="datetime-local" class="startTime" name="startTime"
+                               th:value="${room.startTime != null ? #temporals.format(room.startTime, 'yyyy-MM-dd''T''HH:mm') : ''}"
+                               required />
+                    </td>
+                    <td>
+                        <input type="datetime-local" class="endTime" name="endTime"
+                               th:value="${room.endTime != null ? #temporals.format(room.endTime, 'yyyy-MM-dd''T''HH:mm') : ''}"
+                               required />
+                    </td>
+                    <td>
+                        <button type="submit" class="btn btn-success btn-sm">
+                            Cập Nhật Thời Gian
+                        </button>
+                        <a th:href="@{/ChiTietLopHoc/{id}(id=${room.roomId})}" class="btn btn-info btn-sm">
+                            Xem Chi Tiết
+                        </a>
+                    </td>
+                    <td>
+                        <a th:href="@{/GuiThongBao/{id}(id=${room.roomId})}" class="btn btn-warning btn-sm">
+                            Gửi Thông Báo
+                        </a>
+                    </td>
+                </form>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+</main>
+<script>
+    function validateDateTime() {
+        const now = new Date().toISOString().slice(0, 16);
+        document.querySelectorAll(".startTime, .endTime").forEach(input => {
+            input.setAttribute("min", now);
+        });
 
-<!-- Bảng hiển thị danh sách phòng học -->
-<table class="table table-bordered">
-    <thead class="table-dark">
-    <tr>
-        <th>ID Phòng</th>
-        <th>Tên Phòng</th>
-        <th>Chi Tiết</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="room : ${rooms}">
-        <td th:text="${room.roomId}"></td>
-        <td th:text="${room.roomName}"></td>
-        <td>
-            <a th:href="@{/ChiTietLopHoc/{id}(id=${room.roomId})}" class="btn btn-info btn-sm">
-                Xem Chi Tiết
-            </a>
-        </td>
-    </tr>
-    </tbody>
-</table>
+        document.querySelectorAll(".startTime").forEach(startTimeInput => {
+            startTimeInput.addEventListener("change", function () {
+                let endTimeInput = startTimeInput.closest("tr").querySelector(".endTime");
+                endTimeInput.setAttribute("min", startTimeInput.value);
+            });
+        });
+    }
 
+    window.onload = validateDateTime;
+</script>
 </body>
 </html>
