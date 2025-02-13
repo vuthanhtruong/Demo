@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Danh Sách Giáo Viên</title>
-    <link rel="stylesheet" href="/Admin/DanhSachGiaoVien.css">
+    <link rel="stylesheet" href="/DanhSachGiaoVien.css">
 </head>
 <body>
 
@@ -42,6 +42,7 @@
                 <th>Email</th>
                 <th>Số Điện Thoại</th>
                 <th>MIS ID</th>
+                <th>Nhân Viên Phụ Trách</th>
                 <th>Hành Động</th>
             </tr>
             </thead>
@@ -53,6 +54,7 @@
                 <td th:text="${teacher.email}"></td>
                 <td th:text="${teacher.phoneNumber}"></td>
                 <td th:text="${teacher.misID}"></td>
+                <td th:text="${teacher.employee != null ? teacher.employee.firstName + ' ' + teacher.employee.lastName : 'Không có'}"></td>
                 <td class="action-buttons">
                     <a th:href="@{'/SuaGiaoVien/' + ${teacher.teacherID}}" class="btn btn-edit">✏️ Sửa</a>
                     <a th:href="@{'/XoaGiaoVien/' + ${teacher.teacherID}}" onclick="return confirm('Bạn có chắc chắn muốn xóa?')" class="btn btn-delete">🗑️ Xóa</a>

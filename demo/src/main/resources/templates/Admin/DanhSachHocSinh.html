@@ -5,45 +5,42 @@
   <title>Danh Sách Học Sinh</title>
 
   <!-- CSS -->
-  <link rel="stylesheet" href="/Admin/DanhSachHocSinh.css">
+  <link rel="stylesheet" href="/DanhSachHocSinh.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
 
 <div class="container mt-5">
 
-  <!-- Tiêu đề -->
-  <div class="text-center mb-4">
-    <h2><i class="fas fa-user-graduate"></i> Danh Sách Học Sinh</h2>
-  </div>
-
-  <!-- Nút quay lại trang chủ -->
-  <div class="text-center mb-4">
-    <a href="/TrangChuAdmin" class="btn btn-secondary">
-      <i class="fas fa-arrow-left"></i> Quay Lại Trang Chủ Admin
-    </a>
-  </div>
-
-  <!-- Form tìm kiếm -->
-  <form action="/TimKiemHocSinh" method="post" class="mb-4">
-    <div class="input-group">
-      <input type="text" name="keyword" class="form-control" placeholder="Nhập ID hoặc Tên học sinh" required>
-      <select name="searchType" class="form-select">
-        <option value="id">Tìm theo ID</option>
-        <option value="name">Tìm theo Tên</option>
-      </select>
-      <button type="submit" class="btn btn-primary">
-        <i class="fas fa-search"></i> Tìm kiếm
-      </button>
+  <!-- Tiêu đề và các nút điều hướng -->
+  <div class="header">
+    <h2><i class="fas fa-users"></i> Danh Sách Học Sinh</h2>
+    <div class="btn-group">
+      <a href="/TrangChuAdmin" class="btn btn-secondary">
+        <i class="fas fa-home"></i> Quay Lại Trang Chủ
+      </a>
+      <a href="/ThemHocSinh" class="btn btn-primary">
+        <i class="fas fa-user-plus"></i> Thêm Học Sinh
+      </a>
     </div>
-  </form>
-
-  <!-- Nút thêm học sinh -->
-  <div class="mb-4">
-    <a href="/ThemHocSinh" class="btn btn-success">
-      <i class="fas fa-user-plus"></i> Thêm Học Sinh
-    </a>
   </div>
+
+  <!-- Form tìm kiếm nhân viên -->
+  <div class="search-form">
+    <form th:action="@{/TimKiemHocSinh}" method="post" class="mb-4">
+      <label for="searchType">🔍 Tìm kiếm theo:</label>
+      <div class="search-input-group">
+        <select name="searchType" id="searchType">
+          <option value="id"><i class="fas fa-id-badge"></i> ID</option>
+          <option value="name"><i class="fas fa-user"></i> Tên</option>
+        </select>
+        <input type="text" name="keyword" placeholder="Nhập từ khóa..." required>
+        <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i> Tìm kiếm</button>
+      </div>
+    </form>
+  </div>
+
+
 
   <!-- Bảng danh sách học sinh -->
   <div class="table-responsive">

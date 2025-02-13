@@ -39,7 +39,7 @@ public class NhanVienPost {
 
         entityManager.persist(employees);
 
-        return "redirect:/DangNhapNhanVien"; // Chuyển hướng về trang đăng nhập
+        return "redirect:/DangNhapNhanVien";
     }
     @PostMapping("/DangNhapNhanVien")
     public String DangNhapNhanVien(@RequestParam("EmployeeID") Long employeeID,
@@ -147,16 +147,14 @@ public class NhanVienPost {
             return "ThemHocSinhCuaBan";
         }
 
-        Admin admin = employee.getAdminID(); // Lấy Admin của Employee
+        Admin admin = employee.getAdminID();
 
-        // Kiểm tra trùng lặp StudentID
         Students existingStudent = entityManager.find(Students.class, studentID);
         if (existingStudent != null) {
             model.addAttribute("error", "Mã học sinh đã tồn tại!");
             return "ThemHocSinhCuaBan";
         }
 
-        // Kiểm tra trùng lặp Email
         List<Students> studentsWithEmail = entityManager.createQuery(
                         "SELECT s FROM Students s WHERE s.email = :email", Students.class)
                 .setParameter("email", email)
@@ -329,14 +327,11 @@ public class NhanVienPost {
             Teachers teacher = entityManager.find(Teachers.class, teacherId);
 
             if (teacher != null) {
-                // Kiểm tra xem giáo viên đã có ClassroomDetails trong phòng học này chưa
                 List<ClassroomDetails> existingDetails = entityManager.createQuery(
                                 "FROM ClassroomDetails WHERE room.roomId = :roomId AND teacher.teacherID = :teacherId", ClassroomDetails.class)
                         .setParameter("roomId", roomId)
                         .setParameter("teacherId", teacherId)
                         .getResultList();
-
-                // Nếu chưa có, tạo mới ClassroomDetails
                 if (existingDetails.isEmpty()) {
                     ClassroomDetails classroomDetail = new ClassroomDetails();
                     classroomDetail.setRoom(room);

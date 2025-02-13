@@ -150,40 +150,15 @@ tr:hover {
         transform: translateY(0);
     }
 }
-.container {
-    max-width: 50%;
-    margin: auto;
-    padding: 30px;
-    background: var(--glass-bg);
-    border-radius: 15px;
-    box-shadow: 0 0 15px var(--neon-blue);
-    backdrop-filter: blur(15px);
-    border: 2px solid var(--border-glass);
+.btn-primary {
+    background: var(--neon-blue);
+    color: black;
+    box-shadow: 0 0 10px var(--neon-blue);
+    border-radius: 20px; /* Bo tròn góc */
+    padding: 10px 15px;
 }
 
-h2 {
-    text-align: center;
-    color: var(--neon-blue);
-    text-shadow: 0 0 10px var(--neon-blue);
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.mb-3 {
-    width: 100%;
-    text-align: left;
-}
-
-input, select {
-    width: 100%;
-    padding: 12px;
-}
-
-button {
-    width: 80%;
-    margin-top: 15px;
+.btn-primary:hover {
+    background: var(--neon-green);
+    box-shadow: 0 0 15px var(--neon-green);
 }

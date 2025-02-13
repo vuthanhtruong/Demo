@@ -187,3 +187,16 @@ button {
     width: 80%;
     margin-top: 15px;
 }
+.btn-primary {
+    background: var(--neon-blue);
+    color: black;
+    box-shadow: 0 0 10px var(--neon-blue);
+    border-radius: 50px; /* Bo tròn nút */
+    padding: 10px 20px; /* Căn chỉnh padding để không bị méo chữ */
+    font-weight: bold;
+}
+
+.btn-primary:hover {
+    background: var(--neon-green);
+    box-shadow: 0 0 15px var(--neon-green);
+}

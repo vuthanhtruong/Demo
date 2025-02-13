@@ -208,7 +208,13 @@ public class NhanVienGet {
     @GetMapping("/XoaPhongHoc/{id}")
     public String XoaPhongHoc(ModelMap model, @PathVariable("id") long id) {
         Rooms room = entityManager.find(Rooms.class, id);
-
+        List<ClassroomDetails> existingDetails = entityManager.createQuery(
+                        "FROM ClassroomDetails WHERE room.roomId = :roomId", ClassroomDetails.class)
+                .setParameter("roomId", id)
+                .getResultList();
+        for (ClassroomDetails detail : existingDetails) {
+            entityManager.remove(detail);
+        }
         if (room == null) {
             return "redirect:/DanhSachPhongHoc?error=RoomNotFound";
         }
