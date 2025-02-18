@@ -24,7 +24,7 @@ public class AdminPost {
     private EntityManager entityManager;
 
     @PostMapping("/DangNhapAdmin")
-    public String DangNhapAdmin(@RequestParam("AdminID") long AdminID,
+    public String DangNhapAdmin(@RequestParam("AdminID") String AdminID,
                                 @RequestParam("PasswordAdmin") String PasswordAdmin,
                                 HttpSession session) {
         Admin admin = entityManager.find(Admin.class, AdminID);
@@ -41,8 +41,8 @@ public class AdminPost {
         return "redirect:/TrangChuAdmin";
     }
     @PostMapping("/ThemGiaoVien")
-    public String ThemGiaoVien(@RequestParam("EmployeeID") Long employeeID,
-                               @RequestParam("TeacherID") Long teacherID,
+    public String ThemGiaoVien(@RequestParam("EmployeeID") String employeeID,
+                               @RequestParam("TeacherID") String teacherID,
                                @RequestParam("FirstName") String firstName,
                                @RequestParam("LastName") String lastName,
                                @RequestParam("Email") String email,
@@ -110,8 +110,8 @@ public class AdminPost {
     }
 
     @PostMapping("/ThemHocSinh")
-    public String ThemHocSinh(@RequestParam("EmployeeID") Long employeeID,
-                              @RequestParam("StudentID") Long studentID,
+    public String ThemHocSinh(@RequestParam("EmployeeID") String employeeID,
+                              @RequestParam("StudentID") String studentID,
                               @RequestParam("FirstName") String firstName,
                               @RequestParam("LastName") String lastName,
                               @RequestParam("Email") String email,
@@ -175,7 +175,7 @@ public class AdminPost {
         return "redirect:/DanhSachHocSinh";
     }
     @PostMapping("/ThemNhanVien")
-    public String ThemNhanVien(@RequestParam Long EmployeeID,
+    public String ThemNhanVien(@RequestParam String EmployeeID,
                                @RequestParam String FirstName,
                                @RequestParam String LastName,
                                @RequestParam String Email,
@@ -196,7 +196,7 @@ public class AdminPost {
         }
 
         TypedQuery<Employees> emailQuery = entityManager.createQuery(
-                "SELECT e FROM Employees e WHERE e.Email = :email", Employees.class);
+                "SELECT e FROM Employees e WHERE e.email = :email", Employees.class);
         emailQuery.setParameter("email", Email);
         List<Employees> emailList = emailQuery.getResultList();
         if (!emailList.isEmpty()) {
@@ -204,7 +204,7 @@ public class AdminPost {
         }
 
         TypedQuery<Employees> phoneQuery = entityManager.createQuery(
-                "SELECT e FROM Employees e WHERE e.PhoneNumber = :phone", Employees.class);
+                "SELECT e FROM Employees e WHERE e.phoneNumber = :phone", Employees.class);
         phoneQuery.setParameter("phone", PhoneNumber);
         List<Employees> phoneList = phoneQuery.getResultList();
         if (!phoneList.isEmpty()) {
@@ -226,7 +226,7 @@ public class AdminPost {
     }
 
     @PostMapping("/SuaHocSinh/{id}")
-    public String SuaHocSinh(@PathVariable("id") Long id,
+    public String SuaHocSinh(@PathVariable("id") String id,
                              @RequestParam("firstName") String firstName,
                              @RequestParam("lastName") String lastName,
                              @RequestParam("email") String email,
@@ -261,7 +261,7 @@ public class AdminPost {
         return "redirect:/DanhSachHocSinh";
     }
     @PostMapping("/SuaGiaoVien/{id}")
-    public String SuaGiaoVien(@PathVariable("id") Long id,
+    public String SuaGiaoVien(@PathVariable("id") String id,
                               @RequestParam("firstName") String firstName,
                               @RequestParam("lastName") String lastName,
                               @RequestParam("email") String email,
@@ -298,7 +298,7 @@ public class AdminPost {
         return "redirect:/DanhSachGiaoVien";
     }
     @PostMapping("/SuaNhanVien/{id}")
-    public String CapNhatNhanVien(@PathVariable("id") Long id,
+    public String CapNhatNhanVien(@PathVariable("id") String id,
                                   @ModelAttribute Employees updatedEmployee) {
         Employees existingEmployee = entityManager.find(Employees.class, id);
         if (existingEmployee != null) {
@@ -363,9 +363,9 @@ public class AdminPost {
         if (searchType.equalsIgnoreCase("name")) {
             searchResults = entityManager.createQuery(
                             "SELECT e FROM Employees e " +
-                                    "WHERE LOWER(e.FirstName) LIKE LOWER(:keyword) " +
-                                    "OR LOWER(e.LastName) LIKE LOWER(:keyword) " +
-                                    "OR LOWER(CONCAT(e.FirstName, ' ', e.LastName)) LIKE LOWER(:keyword)", Employees.class)
+                                    "WHERE LOWER(e.firstName) LIKE LOWER(:keyword) " +
+                                    "OR LOWER(e.lastName) LIKE LOWER(:keyword) " +
+                                    "OR LOWER(CONCAT(e.firstName, ' ', e.lastName)) LIKE LOWER(:keyword)", Employees.class)
                     .setParameter("keyword", "%" + keyword + "%")
                     .getResultList();
         } else if (searchType.equalsIgnoreCase("id")) {

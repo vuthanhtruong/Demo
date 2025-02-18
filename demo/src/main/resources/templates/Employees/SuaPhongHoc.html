@@ -10,7 +10,7 @@
 
 <h2 class="text-center mb-4"><i class="fas fa-school"></i> Chỉnh Sửa Phòng Học</h2>
 
-<form th:action="@{/SuaPhongHoc}" method="post" class="border p-4">
+<form th:action="@{/SuaPhongHocOffline}" method="post" class="border p-4">
   <div class="mb-3">
     <label for="roomId" class="form-label"><i class="fas fa-hashtag"></i> ID Phòng</label>
     <input type="text" id="roomId" name="roomId" class="form-control" th:value="${room.roomId}" readonly>
@@ -19,17 +19,6 @@
   <div class="mb-3">
     <label for="roomName" class="form-label"><i class="fas fa-door-open"></i> Tên Phòng</label>
     <input type="text" id="roomName" name="roomName" class="form-control" th:value="${room.roomName}" required>
-  </div>
-
-  <div class="mb-3">
-    <label for="roomType" class="form-label"><i class="fas fa-folder"></i> Loại Phòng</label>
-    <select id="roomType" name="roomTypeId" class="form-select">
-      <option th:each="type : ${roomTypes}"
-              th:value="${type.roomTypeId}"
-              th:text="${type.roomTypeName}"
-              th:selected="${room.roomTypeID != null and type.roomTypeId == room.roomTypeID.roomTypeId}">
-      </option>
-    </select>
   </div>
 
   <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Cập Nhật</button>

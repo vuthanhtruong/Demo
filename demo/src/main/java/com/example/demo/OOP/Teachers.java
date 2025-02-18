@@ -1,7 +1,6 @@
 package com.example.demo.OOP;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,7 +12,7 @@ public class Teachers {
 
     @Id
     @Column(name = "TeacherID")
-    private Long teacherID;
+    private String teacherID;
 
     @Column(name = "Password", nullable = false, length = 255)
     private String password;

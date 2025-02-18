@@ -4,8 +4,29 @@
     <meta charset="UTF-8">
     <title>Đăng Ký Học Sinh</title>
     <link rel="stylesheet" href="/DangKyHocSinh.css">
+    <script>
+        function validateForm(event) {
+            var studentID = document.getElementById("studentID").value;
+            var password = document.getElementById("password").value;
+            var confirmPassword = document.getElementById("ConfirmPassword").value;
 
+            // Kiểm tra nếu StudentID không bắt đầu bằng "STU"
+            if (!studentID.startsWith("STU")) {
+                alert("Mã học sinh phải bắt đầu bằng 'STU'. Vui lòng nhập lại!");
+                event.preventDefault();
+                return false;
+            }
 
+            // Kiểm tra nếu mật khẩu không khớp
+            if (password !== confirmPassword) {
+                alert("Mật khẩu nhập lại không khớp. Vui lòng kiểm tra lại!");
+                event.preventDefault();
+                return false;
+            }
+
+            return true;
+        }
+    </script>
 </head>
 <body class="d-flex align-items-center justify-content-center vh-100 bg-light">
 
@@ -14,7 +35,7 @@
         <div class="col-md-6">
             <div class="card shadow-lg p-4">
                 <h2 class="text-center mb-4">Đăng Ký Học Sinh</h2>
-                <form action="/DangKyHocSinh" method="post">
+                <form action="/DangKyHocSinh" method="post" onsubmit="return validateForm(event)">
                     <div class="mb-3">
                         <label for="studentID" class="form-label">Mã Học Sinh (StudentID)</label>
                         <input type="text" id="studentID" name="StudentID" class="form-control" required>
@@ -25,7 +46,7 @@
                         <input type="password" id="password" name="Password" class="form-control" required>
                     </div>
                     <div class="mb-3">
-                        <label for="password" class="form-label">Nhập lại mật khẩu</label>
+                        <label for="ConfirmPassword" class="form-label">Nhập lại mật khẩu</label>
                         <input type="password" id="ConfirmPassword" name="ConfirmPassword" class="form-control" required>
                     </div>
 
@@ -74,7 +95,6 @@
         </div>
     </div>
 </div>
-
 
 </body>
 </html>

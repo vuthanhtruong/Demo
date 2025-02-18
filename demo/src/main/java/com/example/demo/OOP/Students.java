@@ -1,9 +1,6 @@
 package com.example.demo.OOP;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
-import lombok.Getter;
-import lombok.Setter;
 
 @Entity
 @Table(name = "Students")
@@ -11,7 +8,7 @@ public class Students {
 
     @Id
     @Column(name = "StudentID")
-    private Long studentID;
+    private String studentID;
 
     @Column(name = "Password", nullable = false)
     private String password;
@@ -52,13 +49,17 @@ public class Students {
         this.employee = employee;
         this.admin = admin;
     }
+    @Transient
+    public String getFullName() {
+        return firstName + " " + lastName;
+    }
 
     // Getters and setters
-    public Long getStudentID() {
+    public String getStudentID() {
         return studentID;
     }
 
-    public void setStudentID(Long studentID) {
+    public void setStudentID(String studentID) {
         this.studentID = studentID;
     }
 

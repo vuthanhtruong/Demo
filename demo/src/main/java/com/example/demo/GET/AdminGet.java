@@ -92,7 +92,7 @@ public class AdminGet {
         return "ThemNhanVien";
     }
     @GetMapping("/XoaGiaoVien/{id}")
-    public String XoaGiaoVien(@PathVariable("id") long id, HttpSession session, ModelMap model) {
+    public String XoaGiaoVien(@PathVariable("id") String id, HttpSession session, ModelMap model) {
         if(session.getAttribute("AdminID") == null) {
             return "redirect:/DangNhapAdmin";
         }
@@ -103,7 +103,7 @@ public class AdminGet {
         return "redirect:/DanhSachGiaoVien";
     }
     @GetMapping("/XoaHocSinh/{id}")
-    public String XoaHocSinh(@PathVariable("id") long id, HttpSession session, ModelMap model) {
+    public String XoaHocSinh(@PathVariable("id") String id, HttpSession session, ModelMap model) {
         if(session.getAttribute("AdminID") == null) {
             return "redirect:/DangNhapAdmin";
         }
@@ -113,17 +113,17 @@ public class AdminGet {
     }
     @Transactional
     @GetMapping("/XoaNhanVien/{id}")
-    public String XoaNhanVien(@PathVariable("id") Long id, HttpSession session, ModelMap model) {
+    public String XoaNhanVien(@PathVariable("id") String id, HttpSession session, ModelMap model) {
         if(session.getAttribute("AdminID") == null) {
             return "redirect:/DangNhapAdmin";
         }
         Employees employee = entityManager.find(Employees.class, id);
         if (employee != null) {
             // Cập nhật tất cả Students có EmployeeID = id thành null
-            entityManager.createQuery("UPDATE Students s SET s.employee = NULL WHERE s.employee.EmployeeID = :id")
+            entityManager.createQuery("UPDATE Students s SET s.employee = NULL WHERE s.employee.employeeID = :id")
                     .setParameter("id", id)
                     .executeUpdate();
-            entityManager.createQuery("UPDATE Teachers s SET s.employee = NULL WHERE s.employee.EmployeeID = :id")
+            entityManager.createQuery("UPDATE Teachers s SET s.employee = NULL WHERE s.employee.employeeID = :id")
                     .setParameter("id", id)
                     .executeUpdate();
             // Sau đó xóa nhân viên
@@ -132,7 +132,7 @@ public class AdminGet {
         return "redirect:/DanhSachNhanVien";
     }
     @GetMapping("/SuaHocSinh/{id}")
-    public String SuaHocSinh(ModelMap model, @PathVariable("id") Long id, HttpSession session) {
+    public String SuaHocSinh(ModelMap model, @PathVariable("id") String id, HttpSession session) {
         if(session.getAttribute("AdminID") == null) {
             return "redirect:/DangNhapAdmin";
         }
@@ -143,7 +143,7 @@ public class AdminGet {
         return "SuaHocSinh";
     }
     @GetMapping("/SuaGiaoVien/{id}")
-    public String SuaGiaoVien(ModelMap model, @PathVariable("id") Long id, HttpSession session) {
+    public String SuaGiaoVien(ModelMap model, @PathVariable("id") String id, HttpSession session) {
         if(session.getAttribute("AdminID") == null) {
             return "redirect:/DangNhapAdmin";
         }
@@ -154,7 +154,7 @@ public class AdminGet {
         return "SuaGiaoVien";
     }
     @GetMapping("/SuaNhanVien/{id}")
-    public String SuaAdmin(ModelMap model, @PathVariable("id") Long id, HttpSession session) {
+    public String SuaAdmin(ModelMap model, @PathVariable("id") String id, HttpSession session) {
         if(session.getAttribute("AdminID") == null) {
             return "redirect:/DangNhapAdmin";
         }

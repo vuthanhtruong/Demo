@@ -1,11 +1,15 @@
 package com.example.demo.OOP;
 
-
 import jakarta.persistence.*;
-import java.time.LocalDateTime;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "ClassroomDetails")
+@Getter
+@Setter
+@NoArgsConstructor
 public class ClassroomDetails {
 
     @Id
@@ -13,50 +17,15 @@ public class ClassroomDetails {
     @Column(name = "ClassroomDetailsID")
     private Long classroomDetailsId;
 
-    @ManyToOne
-    @JoinColumn(name = "RoomID", nullable = false, foreignKey = @ForeignKey(name = "FK_Classroom_Room"))
-    private Rooms room;
+    @Column(name = "RoomID", nullable = false, length = 36)
+    private String roomId; // Lưu ID của Rooms hoặc OnlineRooms như một giá trị String bình thường
 
-    @ManyToOne
-    @JoinColumn(name = "TeacherID", nullable = true, foreignKey = @ForeignKey(name = "FK_Classroom_Teacher"))
-    private Teachers teacher;
+    @Column(name = "MemberID", nullable = false, length = 36)
+    private String memberId; // Lưu ID của Teacher hoặc Student như một String bình thường
 
-    @ManyToOne
-    @JoinColumn(name = "StudentID", foreignKey = @ForeignKey(name = "FK_Classroom_Student"))
-    private Students student;
-
-
-
-    // Getters và Setters
-    public Long getClassroomDetailsId() {
-        return classroomDetailsId;
-    }
-
-    public void setClassroomDetailsId(Long classroomDetailsId) {
-        this.classroomDetailsId = classroomDetailsId;
-    }
-
-    public Rooms getRoom() {
-        return room;
-    }
-
-    public void setRoom(Rooms room) {
-        this.room = room;
-    }
-
-    public Teachers getTeacher() {
-        return teacher;
-    }
-
-    public void setTeacher(Teachers teacher) {
-        this.teacher = teacher;
-    }
-
-    public Students getStudent() {
-        return student;
-    }
-
-    public void setStudent(Students student) {
-        this.student = student;
+    // Constructor có tham số
+    public ClassroomDetails(String roomId, String memberId) {
+        this.roomId = roomId;
+        this.memberId = memberId;
     }
 }

@@ -1,27 +1,53 @@
 <!DOCTYPE html>
-<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<html lang="vi">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Trang Chủ Giáo Viên</title>
-  <link rel="stylesheet" href="/TrangChuGiaoVien.css"> <!-- File CSS -->
+  <!-- Thêm liên kết tới Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <link href="/TrangChuGiaoVien.css" rel="stylesheet">
 </head>
 <body>
 
-<div class="container">
-  <h1>👨‍🏫 Chào mừng, <span th:text="${teacher.firstName} + ' ' + ${teacher.lastName}"></span>!</h1>
+<!-- Container chính -->
+<div class="container mt-4">
+  <!-- Tiêu đề trang -->
+  <header class="text-center">
+    <h2>Trang Chủ Giáo Viên</h2>
+    <hr>
+  </header>
 
-  <div class="info-box">
-    <p><strong>ID:</strong> <span th:text="${teacher.teacherID}"></span></p>
-    <p><strong>Email:</strong> <span th:text="${teacher.email}"></span></p>
-    <p><strong>Số điện thoại:</strong> <span th:text="${teacher.phoneNumber}"></span></p>
-    <p><strong>MIS ID:</strong> <span th:text="${teacher.misID}"></span></p>
-  </div>
-
-  <div class="actions">
-    <a href="/DanhSachLopHoc" class="btn btn-primary">📚 Quản Lý Lớp Học</a>
-    <a href="/DanhSachHocSinh" class="btn btn-info">👨‍🎓 Danh Sách Học Sinh</a>
-    <a href="/DangXuatGiaoVien" class="btn btn-danger">🚪 Đăng Xuất</a>
+  <!-- Phân chia nội dung thành 2 cột -->
+  <div class="row">
+    <!-- Menu điều hướng bên trái -->
+    <nav class="col-md-3">
+      <div class="nav-item">
+        <a href="/TinNhanCuaGiaoVien" class="text-dark">
+          <i class="fas fa-comments"></i> Đoạn Chat
+        </a>
+      </div>
+      <div class="nav-item">
+        <a href="/DanhSachBlog" class="text-dark">
+          <i class="fas fa-blog"></i> Mục Blog
+        </a>
+      </div>
+      <div class="nav-item">
+        <a href="/DanhSachLopHocGiaoVien" class="text-dark">
+          <i class="fas fa-chalkboard-teacher"></i> Danh Sách Lớp Học Của Bạn
+        </a>
+      </div>
+      <div class="nav-item">
+        <a href="/TrangCaNhanGiaoVien" class="text-dark">
+          <i class="fas fa-user"></i> Trang Cá Nhân
+        </a>
+      </div>
+      <div class="nav-item">
+        <a href="/DangXuatGiaoVien" class="text-danger">
+          <i class="fas fa-sign-out-alt"></i> Đăng Xuất
+        </a>
+      </div>
+    </nav>
   </div>
 </div>
 

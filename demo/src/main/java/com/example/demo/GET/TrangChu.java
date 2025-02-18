@@ -27,6 +27,4 @@ public class TrangChu {
     public String DanhChoAdmih() {
         return "DangNhapAdmin";
     }
-
-
 }

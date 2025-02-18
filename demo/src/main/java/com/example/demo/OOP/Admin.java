@@ -5,7 +5,6 @@ import jakarta.validation.constraints.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.ArrayList;
 import java.util.Set;
 
 @Entity
@@ -16,20 +15,20 @@ public class Admin {
 
     @Id
     @Column(name = "AdminID")
-    private Long AdminID;
+    private String adminID;
 
     @Column(name = "Password", nullable = false, length = 255)
-    private String Password;
+    private String password;
 
     @Column(name = "FirstName", nullable = false, length = 100)
-    private String FirstName;
+    private String firstName;
 
     @Column(name = "LastName", nullable = false, length = 100)
-    private String LastName;
+    private String lastName;
 
     @Column(name = "Email", nullable = false, unique = true, length = 255)
     @Email(message = "Email không hợp lệ")
-    private String Email;
+    private String email;
 
     @OneToMany(mappedBy = "admin", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Teachers> teachers;
@@ -39,12 +38,12 @@ public class Admin {
     @Column(name = "PhoneNumber", nullable = false, unique = true, length = 20)
     @Pattern(regexp = "^\\+?[0-9]{10,15}$", message = "Số điện thoại không hợp lệ")
     private String PhoneNumber;
-    public Admin(Long adminID, String password, String firstName, String lastName, String email, String phoneNumber) {
-        this.AdminID = adminID;
-        this.Password = password;
-        this.FirstName = firstName;
-        this.LastName = lastName;
-        this.Email = email;
+    public Admin(String adminID, String password, String firstName, String lastName, String email, String phoneNumber) {
+        this.adminID = adminID;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
         this.PhoneNumber = phoneNumber;
     }
 

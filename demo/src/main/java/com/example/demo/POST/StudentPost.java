@@ -21,15 +21,26 @@ public class StudentPost {
     @PersistenceContext
     private EntityManager entityManager;
     @PostMapping("/DangKyHocSinh")
-    public String DangKyHocSinh(@RequestParam("EmployeeID") Long employeeID,
-                                @RequestParam("StudentID") Long studentID,
+    public String DangKyHocSinh(@RequestParam("EmployeeID") String employeeID,
+                                @RequestParam("StudentID") String studentID,
                                 @RequestParam("FirstName") String firstName,
                                 @RequestParam("LastName") String lastName,
                                 @RequestParam("Email") String email,
                                 @RequestParam("PhoneNumber") String phoneNumber,
                                 @RequestParam(value = "MisID", required = false) String misID,
                                 @RequestParam("Password") String password,
-                                @RequestParam("ConfirmPassword") String ConfirmPassword) {
+                                @RequestParam("ConfirmPassword") String confirmPassword) {
+
+        // Kiểm tra mật khẩu có khớp không
+        if (!password.equals(confirmPassword)) {
+            return "redirect:/DangKyHocSinh?error=password_mismatch";
+        }
+
+        // Kiểm tra nếu StudentID không bắt đầu bằng "STU"
+        if (!studentID.startsWith("STU")) {
+            return "redirect:/DangKyHocSinh?error=invalid_studentID";
+        }
+
         Admin admin = entityManager.find(Admin.class, 1);
         Employees employee = entityManager.find(Employees.class, employeeID);
 
@@ -37,9 +48,8 @@ public class StudentPost {
             return "redirect:/DangKyHocSinh?error=invalid_employee";
         }
 
-        // Kiểm tra xem student có tồn tại không
-        Students existingStudent = entityManager.find(Students.class, studentID);
-        if (existingStudent != null) {
+        // Kiểm tra xem StudentID đã tồn tại chưa
+        if (entityManager.find(Students.class, studentID) != null) {
             return "redirect:/DangKyHocSinh?error=student_exists";
         }
 
@@ -49,15 +59,16 @@ public class StudentPost {
         student.setEmail(email);
         student.setPhoneNumber(phoneNumber);
         student.setPassword(password);
-        student.setStudentID(studentID);
+        student.setStudentID(studentID); // Không cần thêm "STU", vì đã kiểm tra trước đó
         student.setAdmin(admin);
         student.setEmployee(employee);
         student.setMisId(misID);
 
-        entityManager.merge(student);
+        entityManager.persist(student);
 
         return "redirect:/DangNhapHocSinh";
     }
+
     @PostMapping("/DangNhapHocSinh")
     public String DangNhapHocSinh(@RequestParam("studentID") long studentID,
                                   @RequestParam("password") String password,

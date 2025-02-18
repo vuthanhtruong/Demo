@@ -13,44 +13,116 @@
 <nav class="mb-3">
     <a th:href="@{/TrangChuNhanVien}" class="btn btn-secondary">Quay Lại Trang Chủ Nhân Viên</a>
 </nav>
-<main>
-    <section>
-        <table class="table table-bordered" role="table" aria-label="Danh sách phòng học">
+<main class="container">
+    <!-- Bảng phòng học Offline -->
+    <section class="table-container">
+        <h2>Phòng Học Offline</h2>
+        <table class="table table-bordered">
             <thead class="table-dark">
             <tr>
                 <th>ID Phòng</th>
                 <th>Tên Phòng</th>
-                <th>Thời Gian Bắt Đầu</th>
-                <th>Thời Gian Kết Thúc</th>
+                <th>Địa Chỉ</th>
+                <th>Lịch Trình</th>
                 <th>Chi Tiết</th>
                 <th>Hành Động</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="room : ${rooms}">
+            <tr th:each="room : ${offlineRooms}">
                 <td th:text="${room.roomId}"></td>
                 <td th:text="${room.roomName}"></td>
                 <td>
-                    <input type="hidden" name="roomId" th:value="${room.roomId}" />
-                    <input type="datetime-local" class="startTime" name="startTime"
-                           th:value="${room.startTime != null ? #temporals.format(room.startTime, 'yyyy-MM-dd''T''HH:mm') : ''}"
-                           required />
+                    <form th:action="@{/CapNhatDiaChi}" method="post">
+                        <input type="hidden" name="roomId" th:value="${room.roomId}" />
+                        <input type="text" name="roomAddress" th:value="${room.address}" required />
+                        <button type="submit" class="btn btn-primary btn-sm">Cập Nhật Địa Chỉ</button>
+                    </form>
                 </td>
                 <td>
-                    <input type="datetime-local" class="endTime" name="endTime"
-                           th:value="${room.endTime != null ? #temporals.format(room.endTime, 'yyyy-MM-dd''T''HH:mm') : ''}"
-                           required />
+                    <form th:action="@{/CapNhatLichTrinh}" method="post" style="text-align: center;">
+                        <input type="hidden" name="roomId" th:value="${room.roomId}" />
+                        <div>
+                            <input type="datetime-local" class="startTime" name="startTime"
+                                   th:value="${room.startTime != null ? #temporals.format(room.startTime, 'yyyy-MM-dd''T''HH:mm') : ''}"
+                                   required />
+                        </div>
+                        <br>
+                        <div>
+                            <input type="datetime-local" class="endTime" name="endTime"
+                                   th:value="${room.endTime != null ? #temporals.format(room.endTime, 'yyyy-MM-dd''T''HH:mm') : ''}"
+                                   required />
+                        </div>
+                        <br>
+                        <button type="submit" class="btn btn-success btn-sm">Cập Nhật</button>
+                    </form>
                 </td>
+
                 <td>
                     <a th:href="@{/ChiTietLopHoc/{id}(id=${room.roomId})}" class="btn btn-info btn-sm">
                         Xem Chi Tiết
                     </a>
                 </td>
                 <td>
-                    <form th:action="@{/CapNhatLichTrinh}" method="post" class="d-inline">
+                    <a th:href="@{/GuiThongBao/{id}(id=${room.roomId})}" class="btn btn-warning btn-sm">
+                        Gửi Thông Báo
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Bảng phòng học Online -->
+    <section class="table-container">
+        <h2>Phòng Học Online</h2>
+        <table class="table table-bordered">
+            <thead class="table-dark">
+            <tr>
+                <th>ID Phòng</th>
+                <th>Tên Phòng</th>
+                <th>Link Phòng</th>
+                <th>Lịch Trình</th>
+                <th>Chi Tiết</th>
+                <th>Hành Động</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="room : ${onlineRooms}">
+                <td th:text="${room.roomId}"></td>
+                <td th:text="${room.roomName}"></td>
+                <td>
+                    <form th:action="@{/CapNhatLink}" method="post">
                         <input type="hidden" name="roomId" th:value="${room.roomId}" />
-                        <button type="submit" class="btn btn-success btn-sm">Cập Nhật Thời Gian</button>
+                        <input type="url" name="roomLink" th:value="${room.link}" required />
+                        <button type="submit" class="btn btn-primary btn-sm">Cập Nhật Link</button>
                     </form>
+                </td>
+                <td>
+                    <form th:action="@{/CapNhatLichTrinh}" method="post" style="text-align: center;">
+                        <input type="hidden" name="roomId" th:value="${room.roomId}" />
+                        <div>
+                            <input type="datetime-local" class="startTime" name="startTime"
+                                   th:value="${room.startTime != null ? #temporals.format(room.startTime, 'yyyy-MM-dd''T''HH:mm') : ''}"
+                                   required />
+                        </div>
+                        <br>
+                        <div>
+                            <input type="datetime-local" class="endTime" name="endTime"
+                                   th:value="${room.endTime != null ? #temporals.format(room.endTime, 'yyyy-MM-dd''T''HH:mm') : ''}"
+                                   required />
+                        </div>
+                        <br>
+                        <button type="submit" class="btn btn-success btn-sm">Cập Nhật</button>
+                    </form>
+                </td>
+
+                <td>
+                    <a th:href="@{/ChiTietLopHoc/{id}(id=${room.roomId})}" class="btn btn-info btn-sm">
+                        Xem Chi Tiết
+                    </a>
+                </td>
+                <td>
                     <a th:href="@{/GuiThongBao/{id}(id=${room.roomId})}" class="btn btn-warning btn-sm">
                         Gửi Thông Báo
                     </a>
@@ -60,22 +132,5 @@
         </table>
     </section>
 </main>
-<script>
-    function validateDateTime() {
-        const now = new Date().toISOString().slice(0, 16);
-        document.querySelectorAll(".startTime, .endTime").forEach(input => {
-            input.setAttribute("min", now);
-        });
-
-        document.querySelectorAll(".startTime").forEach(startTimeInput => {
-            startTimeInput.addEventListener("change", function () {
-                let endTimeInput = startTimeInput.closest("tr").querySelector(".endTime");
-                endTimeInput.setAttribute("min", startTimeInput.value);
-            });
-        });
-    }
-
-    window.onload = validateDateTime;
-</script>
 </body>
 </html>

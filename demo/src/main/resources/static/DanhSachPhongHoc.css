@@ -26,7 +26,7 @@ body {
     animation: fadeIn 1s ease-in-out;
 }
 
-h1 {
+h2 {
     text-transform: uppercase;
     text-shadow: 0 0 15px var(--neon-blue);
     margin-bottom: 20px;
@@ -96,6 +96,19 @@ tr:hover {
     transition: 0.3s;
 }
 
+.btn-primary {
+    background: var(--neon-blue);
+    color: black;
+    box-shadow: 0 0 10px var(--neon-blue);
+    border-radius: 20px; /* Rounded corners */
+    padding: 10px 15px;
+}
+
+.btn-primary:hover {
+    background: var(--neon-green);
+    box-shadow: 0 0 15px var(--neon-green);
+}
+
 .btn-secondary {
     background: var(--neon-blue);
     color: black;
@@ -150,15 +163,39 @@ tr:hover {
         transform: translateY(0);
     }
 }
-.btn-primary {
-    background: var(--neon-blue);
-    color: black;
-    box-shadow: 0 0 10px var(--neon-blue);
-    border-radius: 20px; /* Bo tròn góc */
-    padding: 10px 15px;
+
+.d-flex {
+    display: flex;
 }
 
-.btn-primary:hover {
-    background: var(--neon-green);
-    box-shadow: 0 0 15px var(--neon-green);
+.justify-content-between {
+    justify-content: space-between;
+}
+
+.mb-3, .mb-4 {
+    margin-bottom: 1rem;
+}
+
+.table-striped tbody tr:nth-child(odd) {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+#searchType, #searchInput {
+    max-width: 200px;
+    margin-right: 10px;
+}
+
+@media (max-width: 767px) {
+    .row {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .col-md-6 {
+        width: 100%;
+    }
+
+    .table th, .table td {
+        padding: 8px;
+    }
 }
